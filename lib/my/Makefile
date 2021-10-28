@@ -52,7 +52,8 @@ STRMANIP = my_strcat.c              \
 	my_strstr.c              \
 	my_str_to_word_array.c   \
 	my_revstr.c \
-	contain.c
+	contain.c \
+	replace_str.c
 
 OBJ = $(GRAPHICS:.c=.o) \
 	$(IOMANIP:.c=.o) \

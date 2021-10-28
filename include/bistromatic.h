@@ -26,8 +26,14 @@
     #define SYNTAX_ERROR_MSG "syntax error"
     #define ERROR_MSG "error"
 
+typedef struct int_pair {
+    int a;
+    int b;
+} int_pair_t;
+
 void check_all(int ac, char **av);
 void check_expr(char const *str, char const *base, char const *ops);
 void usage(void);
+void cleanex(char **expr, char *base, char *ops);
 
 #endif

@@ -18,8 +18,8 @@ void usage(void)
     my_putstr("./calc base operators size_read\n\n");
     my_putstr("DESCRIPTION\n");
     my_putstr("- base: all the symbols of the base\n");
-    my_putstr("- operators: the symbols for the parentheses"
-              "and the 5 operators\n");
+    my_putstr("- operators: the symbols for the parentheses");
+    my_putstr(" and the 5 operators\n");
     my_putstr("- size_read: numbers of characters to be read\n");
 }
 
@@ -48,13 +48,18 @@ int main(int ac, char **av)
 {
     int size = 0;
     char *expr;
-    //ac = 4;
-    //av[2] = "0123456789";
-    //av[3] = "()+-*/%";
-    check_all(ac, av);
-    size = my_getnbr(av[3]);
-    expr = get_expr(size);
-    check_expr(expr, av[1], av[2]);
+
+    ac = 4;
+    av[2] = "0123456789ABCDEF";
+    av[3] = "()+-*/%";
+    check_all(ac, av + 1);
+    size = my_getnbr(av[4]);
+    expr = my_strdup(av[1]);//get_expr(size);
+    check_expr(av[1], av[2], av[3]);
+    cleanex(&expr, av[2], av[3]);
+    my_putstr(expr);
+    my_putchar('\n');
     //my_putstr(eval_expr(expr, av[1], av[2], size));
+    free(expr);
     return EXIT_SUCCESS;
 }

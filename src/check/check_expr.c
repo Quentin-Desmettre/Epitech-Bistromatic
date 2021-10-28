@@ -25,6 +25,14 @@ static int check_paren(char const *str, char const *ops)
     return stack == 0;
 }
 
+static void check_double_paren(char const *str, char const *ops, int i)
+{
+    if (str[i] == ops[0] && str[i + 1] == ops[1]) {
+        my_putstr(SYNTAX_ERROR_MSG);
+        exit(EXIT_SYNTAX_ERROR);
+    }
+}
+
 static void check_double_ops(char const *str, char const *ops, int i)
 {
     if (contain(ops + 2, str[i]) && contain(ops + 2, str[i + 1])) {
@@ -35,7 +43,8 @@ static void check_double_ops(char const *str, char const *ops, int i)
     }
 }
 
-static void check_ops_paren(char const *str, char const *base, char const *ops, int i)
+static void check_ops_paren(char const *str, char const *base,
+    char const *ops, int i)
 {
     if (contain(base, str[i]) &&
         (str[i + 1] == ops[0] || str[i - 1] == ops[1])) {
@@ -48,7 +57,7 @@ static void check_ops_paren(char const *str, char const *base, char const *ops, 
             exit(EXIT_SYNTAX_ERROR);
         }
         if (str[i - 1] == ops[0] &&
-            ((str[i] != ops[2] && str[i] != ops[3]) || !contain(base, str[i + 1]))) {
+            ((str[i] != ops[2] && str[i] != ops[3]))) {
             my_putstr(SYNTAX_ERROR_MSG);
             exit(EXIT_SYNTAX_ERROR);
         }
@@ -74,5 +83,6 @@ void check_expr(char const *str, char const *base, char const *ops)
     for (int i = 0; str[i]; i++) {
         check_ops_paren(str, base, ops, i);
         check_double_ops(str, ops, i);
+        check_double_paren(str, ops, i);
     }
 }
