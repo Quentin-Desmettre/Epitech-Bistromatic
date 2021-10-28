@@ -6,18 +6,17 @@
 */
 
 #include <stdlib.h>
-#include "include/strmanip.h"
-#include "include/evalexpr.h"
+#include "../../include/strmanip.h"
 
-static int len_to_prev(char *str, int start)
+static int len_to_prev(char *str, int start, char *base, char *ops)
 {
     int i = start - 1;
     int len = 0;
 
     while (i >= 0) {
-    if (str[i] <= '9' && str[i] >= '0')
+        if (contain(base, str[i]))
             len++;
-        else if (str[i] == '-' && (!i || is_op(str[i - 1])))
+        else if (str[i] == ops[3] && (!i || contain(ops, str[i - 1])))
             len++;
         else
             break;
@@ -26,15 +25,15 @@ static int len_to_prev(char *str, int start)
     return len;
 }
 
-static int len_to_next(char *str, int start)
+static int len_to_next(char *str, int start, char *base, char *ops)
 {
     int i = start + 1;
     int len = 0;
 
     while (1) {
-        if (str[i] && str[i] <= '9' && str[i] >= '0')
+        if (str[i] && contain(base, str[i]))
             len++;
-        else if (str[i] == '-' && (!i || is_op(str[i - 1])))
+        else if (str[i] == ops[3] && (!i || contain(ops, str[i - 1])))
             len++;
         else
             break;
@@ -43,16 +42,16 @@ static int len_to_next(char *str, int start)
     return len;
 }
 
-char *get_next_number(char *str, int start)
+char *get_next_number(char *str, int start, char *base, char *ops)
 {
-    int len = len_to_next(str, start);
+    int len = len_to_next(str, start, base, ops);
     char *num = malloc(sizeof(char) * len + 1);
     int i = start + 1;
 
     while (1) {
-        if (str[i] && str[i] <= '9' && str[i] >= '0')
+        if (str[i] && contain(base, str[i]))
             num[i - start - 1] = str[i];
-    else if (str[i] == '-' && (!i || is_op(str[i - 1])))
+        else if (str[i] == ops[3] && (!i || contain(ops, str[i - 1])))
             num[i - start - 1] = str[i];
         else
             break;
@@ -62,17 +61,17 @@ char *get_next_number(char *str, int start)
     return num;
 }
 
-char *get_prev_number(char *str, int start)
+char *get_prev_number(char *str, int start, char *base, char *ops)
 {
-    int len = len_to_prev(str, start);
+    int len = len_to_prev(str, start, base, ops);
     char *num = malloc(sizeof(char) * len + 1);
     int i = start - 1;
     int j = 0;
 
     while (i >= 0) {
-        if (str[i] <= '9' && str[i] >= '0')
+        if (contain(base, str[i]))
             num[j] = str[i];
-        else if (str[i] == '-' && (i == 0 || is_op(str[i - 1])))
+        else if (str[i] == ops[3] && (i == 0 || contain(ops, str[i - 1])))
             num[j] = str[i];
         else
             break;

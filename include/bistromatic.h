@@ -35,5 +35,9 @@ void check_all(int ac, char **av);
 void check_expr(char const *str, char const *base, char const *ops);
 void usage(void);
 void cleanex(char **expr, char *base, char *ops);
+char *evaluate(char *expr, char *base, char *ops);
+char *get_next_number(char *str, int start, char *base, char *ops);
+char *get_prev_number(char *str, int start, char *base, char *ops);
+char *do_op(char *first, char op, char *second, char *base, char *ops);
 
 #endif

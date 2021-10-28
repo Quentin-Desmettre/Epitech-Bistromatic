@@ -5,30 +5,16 @@
 ** Do operations
 */
 
-#include "include/evalexpr.h"
-#include "include/iomanip.h"
-#include <stdlib.h>
+#include "../../include/bistromatic.h"
 
-static int compute(int n1, int operation, int n2)
+char *do_op(char *first, char op, char *second, char *base, char *ops)
 {
-    int (*fonc[5])(int, int);
+    int (*fonc[5])(char *, char *, char *, char *);
 
-    fonc[0] = &add;
-    fonc[1] = &substract;
-    fonc[2] = &multiply;
-    fonc[3] = &divide;
-    fonc[4] = &modulo;
-    return fonc[operation](n1, n2);
-}
-
-char *do_op(char *first, char my_op, char *second)
-{
-    int number_1 = my_getnbr(first);
-    int number_2 = my_getnbr(second);
-    int op = (my_op == '+') * 0 + (my_op == '-') + (my_op == '*') * 2;
-    char *string;
-
-    op += (my_op == '/') * 3 + (my_op == '%') * 4;
-    int_to_str(compute(number_1, op, number_2), &string);
-    return string;
+    fonc[0] = &infin_add;
+    fonc[1] = &infin_sub;
+    fonc[2] = &infin_mul;
+    fonc[3] = &infin_div;
+    fonc[4] = &infin_mod;
+    return fonc[operation](first, second, base, ops);
 }
