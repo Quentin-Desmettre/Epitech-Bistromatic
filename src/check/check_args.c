@@ -40,6 +40,10 @@ static void check_help(int ac, char **av)
         usage();
         exit(EXIT_USAGE);
     }
+    if (ac != 4) {
+        my_putstr(ERROR_MSG);
+        exit(EXIT_SYNTAX_ERROR);
+    }
 }
 
 void check_all(int ac, char **av)

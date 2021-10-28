@@ -49,14 +49,11 @@ int main(int ac, char **av)
     int size = 0;
     char *expr;
 
-    ac = 4;
-    av[2] = "0123456789ABCDEF";
-    av[3] = "()+-*/%";
-    check_all(ac, av + 1);
-    size = my_getnbr(av[4]);
-    expr = my_strdup(av[1]);//get_expr(size);
-    check_expr(av[1], av[2], av[3]);
-    cleanex(&expr, av[2], av[3]);
+    check_all(ac, av);
+    size = my_getnbr(av[3]);
+    expr = get_expr(size);
+    check_expr(expr, av[1], av[2]);
+    cleanex(&expr, av[1], av[2]);
     my_putstr(expr);
     my_putchar('\n');
     //my_putstr(eval_expr(expr, av[1], av[2], size));
