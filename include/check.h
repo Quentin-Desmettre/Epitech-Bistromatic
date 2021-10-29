@@ -16,5 +16,8 @@ typedef struct int_pair {
 void check_all(int ac, char **av);
 void check_expr(char const *str, char const *base, char const *ops);
 void cleanex(char **expr, char *base, char *ops);
+void check_base_ops(char const *base, char const *ops);
+void check_ops_place(char const *str, char const *ops);
+void check_basic(char const *str, char const *base, char const *ops);
 
 #endif

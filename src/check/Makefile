@@ -7,7 +7,8 @@
 
 SRC = check_args.c \
 	check_expr.c \
-	clean_expr.c
+	clean_expr.c \
+	check_expr_others.c
 
 OBJ = $(SRC:.c=.o)
 

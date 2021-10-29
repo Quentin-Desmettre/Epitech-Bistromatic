@@ -8,7 +8,7 @@
 #include "bistromatic.h"
 #include <stdlib.h>
 
-static int check_paren(char const *str, char const *ops)
+static void check_paren(char const *str, char const *ops)
 {
     int stack = 0;
 
@@ -17,10 +17,15 @@ static int check_paren(char const *str, char const *ops)
             stack++;
         if (str[i] == ops[1])
             stack--;
-        if (stack < 0)
-            return 0;
+        if (stack < 0) {
+            my_putstr(SYNTAX_ERROR_MSG);
+            exit(EXIT_SYNTAX_ERROR);
+        }
     }
-    return stack == 0;
+    if (stack != 0) {
+        my_putstr(SYNTAX_ERROR_MSG);
+        exit(EXIT_SYNTAX_ERROR);
+    }
 }
 
 static void check_double_paren(char const *str, char const *ops, int i)
@@ -64,20 +69,10 @@ static void check_ops_paren(char const *str, char const *base,
 
 void check_expr(char const *str, char const *base, char const *ops)
 {
-    char base_ops[my_strlen(base) + my_strlen(ops) + 1];
-
-    my_strcpy(base_ops, base);
-    my_strcat(base_ops, ops);
-    if (my_strlen(str) == 0 || !contain_only(str, base_ops) ||
-        !check_paren(str, ops)) {
-        my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_SYNTAX_ERROR);
-    }
-    if ((contain(ops + 2, str[0]) && (str[0] != ops[2] && str[0] != ops[3])) ||
-        contain(ops + 2, str[my_strlen(str) - 1])) {
-        my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_SYNTAX_ERROR);
-    }
+    check_base_ops(base, ops);
+    check_basic(str, base, ops);
+    check_paren(str, ops);
+    check_ops_place(str, ops);
     for (int i = 0; str[i]; i++) {
         check_ops_paren(str, base, ops, i);
         check_double_ops(str, ops, i);
