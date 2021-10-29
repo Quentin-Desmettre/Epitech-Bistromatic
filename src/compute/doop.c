@@ -7,14 +7,14 @@
 
 #include "../../include/bistromatic.h"
 
-char *do_op(char *first, char op, char *second, char *base, char *ops)
+char *do_op(char *first, int op, char *second, char *base, char *ops)
 {
-    int (*fonc[5])(char *, char *, char *, char *);
+    char *(*fonc[5])(char *, char *, char *, char *);
 
-    fonc[0] = &infin_add;
-    fonc[1] = &infin_sub;
-    fonc[2] = &infin_mul;
-    fonc[3] = &infin_div;
-    fonc[4] = &infin_mod;
-    return fonc[operation](first, second, base, ops);
+    //fonc[0] = &infin_add;
+    //  fonc[1] = &infin_sub;
+    //fonc[2] = &infin_mul;
+    //fonc[3] = &infin_div;
+    //fonc[4] = &infin_mod;
+    return (fonc[op])(first, second, base, ops);
 }
