@@ -18,7 +18,7 @@ INCLUDE = ../../include/
 LIB = ../../lib/my/
 
 all:
-	gcc $(FLAGS) $(SRC) -I $(INCLUDE) -L $(LIB) -lmy
+	gcc $(FLAGS) -I $(INCLUDE) $(SRC) -L $(LIB) -lmy
 	cp $(OBJ) ../../
 
 clean:

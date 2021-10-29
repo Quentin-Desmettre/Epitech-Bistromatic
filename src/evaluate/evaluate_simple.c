@@ -5,11 +5,8 @@
 ** evaluation functions
 */
 
-#include "../../include/lib/strmanip.h"
-#include "../../include/lib/iomanip.h"
 #include <stdlib.h>
-#include "../../include/bistromatic.h"
-#include "../../include/evalexpr.h"
+#include "bistromatic.h"
 
 static char *compute_raw(char *expr, int start, int *len, int *len_1, char *base, char *ops)
 {

@@ -1,27 +1,25 @@
 ##
 ## EPITECH PROJECT, 2021
-## Bistromatic
+## bistromatic
 ## File description:
-## Makefile for evaluation
+## makefile for add
 ##
 
-SRC = eval_expr.c \
-	evaluate_simple.c \
-	get_prev_next.c
+SRC = computations.c \
+	infinadd.c \
+	strmanips.c
 
 OBJ = $(SRC:.c=.o)
 
 FLAGS = -c -g -Wall -Wextra
 
-INCLUDE = ../../include/
+INCLUDE = ../../../include/
 
-LIB = ../../lib/my/
+LIB = ../../../lib/my/
 
 all:
 	gcc $(FLAGS) -I $(INCLUDE) $(SRC) -L $(LIB) -lmy
-	cp $(OBJ) ../../
+	cp $(OBJ) ../../../
 
 clean:
 	rm -f $(OBJ)
-
-re: clean all

@@ -5,18 +5,8 @@
 ** string manipulations
 */
 
-#include "../../../../include/bistromatic.h"
-#include "../../../../include/strmanip.h"
+#include "bistromatic.h"
 #include <stdlib.h>
-
-int str_is_num(char const *str)
-{
-    for (int i = 0; i < my_strlen(str); i++) {
-        if ((str[i] > '9' || str[i] < '0') && (str[i] != '-' || i != 0))
-            return 0;
-    }
-    return 1;
-}
 
 void init_with(char *str, char c, int nb)
 {

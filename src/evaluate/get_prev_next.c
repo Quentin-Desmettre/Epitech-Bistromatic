@@ -6,8 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "../../include/lib/strmanip.h"
-
+#include "lib/strmanip.h"
 
 static int len_to_prev(char *str, int start, char *base, char *ops)
 {

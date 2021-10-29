@@ -19,7 +19,7 @@ all:
 	make -C check/
 	make -C compute/
 	make -C evaluate/
-	gcc $(FLAGS) $(SRC) -I $(INCLUDE) -L $(LIB) -lmy
+	gcc $(FLAGS) -I $(INCLUDE) $(SRC) -L $(LIB) -lmy
 	cp $(OBJ) ../
 
 clean:

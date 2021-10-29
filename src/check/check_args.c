@@ -5,10 +5,8 @@
 ** check if arguments are valid
 */
 
-#include "../../include/lib/iomanip.h"
-#include "../../include/lib/strmanip.h"
 #include <stdlib.h>
-#include "../../include/bistromatic.h"
+#include "bistromatic.h"
 
 static void check_nb_args(int ac)
 {

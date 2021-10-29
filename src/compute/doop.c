@@ -5,7 +5,7 @@
 ** Do operations
 */
 
-#include "../../include/bistromatic.h"
+#include "bistromatic.h"
 
 char *do_op(char *first, int op, char *second, char *base, char *ops)
 {

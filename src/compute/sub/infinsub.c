@@ -1,3 +1,13 @@
+/*
+** EPITECH PROJECT, 2021
+** bistromatic
+** File description:
+** infinsub
+*/
+
+#include "infin.h"
+#include "str_manipulations.h"
+
 char *infin_sub(char *fir, char *sec, char *base, char *ops)
 {
     char *result;

@@ -25,6 +25,12 @@
     #define EXIT_SUCCESS 0
     #define SYNTAX_ERROR_MSG "syntax error"
     #define ERROR_MSG "error"
+    #include "check.h"
+    #include "str_manipulations.h"
+    #include "evalexpr.h"
+    #include "infin.h"
+    #include "lib/iomanip.h"
+    #include "lib/strmanip.h"
 
 void usage(void);
 

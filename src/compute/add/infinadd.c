@@ -5,7 +5,7 @@
 ** main file
 */
 
-#include "../../../../include/bistromatic.h"
+#include "bistromatic.h"
 
 char *infin_add(char *fir, char *sec, char *base, char *ops)
 {

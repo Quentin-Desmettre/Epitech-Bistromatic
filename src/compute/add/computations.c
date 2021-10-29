@@ -5,9 +5,8 @@
 ** Computations
 */
 
-#include "../../../../include/bistromatic.h"
+#include "bistromatic.h"
 #include <stdlib.h>
-#include "../../../../include/strmanip.h"
 
 static void put_same_length(char **first, char **second, char *base, char *ops)
 {

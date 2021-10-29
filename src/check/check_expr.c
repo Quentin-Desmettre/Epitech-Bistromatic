@@ -5,10 +5,8 @@
 ** check validity of expr
 */
 
-#include "../../include/bistromatic.h"
+#include "bistromatic.h"
 #include <stdlib.h>
-#include "../../include/lib/iomanip.h"
-#include "../../include/lib/strmanip.h"
 
 static int check_paren(char const *str, char const *ops)
 {
