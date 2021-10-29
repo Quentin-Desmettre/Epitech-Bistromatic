@@ -47,14 +47,11 @@ int main(int ac, char **av)
     int size = 0;
     char *expr;
 
-    check_all(ac, av);
-    size = my_getnbr(av[3]);
-    expr = get_expr(size);
-    check_expr(expr, av[1], av[2]);
-    cleanex(&expr, av[1], av[2]);
-    my_putstr(expr);
-    my_putchar('\n');
-    //my_putstr(eval_expr(expr, av[1], av[2], size));
-    free(expr);
+    //check_all(ac, av);
+    //size = my_getnbr(av[3]);
+    expr = my_strdup(av[1]);//get_expr(size);
+    check_expr(expr, "0123456789abcdef", "()+-*/%");
+    cleanex(&expr, "0123456789abcdef", "()+-*/%");
+    my_putstr(eval_expr(expr, "0123456789abcdef", "()+-*/%"));
     return EXIT_SUCCESS;
 }

@@ -60,5 +60,7 @@ char *clean_str(char *str, char *base, char *ops)
     new = my_strdup(str + start);
     if (insert_neg)
         insert_at_beg(&new, ops[3], 1);
+    free(null);
+    //free(str);
     return new;
 }

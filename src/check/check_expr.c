@@ -50,7 +50,7 @@ static void check_ops_paren(char const *str, char const *base,
     char const *ops, int i)
 {
     if (contain(base, str[i]) &&
-        (str[i + 1] == ops[0] || str[i - 1] == ops[1])) {
+        (str[i + 1] == ops[0] || (i && str[i - 1] == ops[1]))) {
         my_putstr(SYNTAX_ERROR_MSG);
         exit(EXIT_SYNTAX_ERROR);
     }
@@ -59,7 +59,7 @@ static void check_ops_paren(char const *str, char const *base,
             my_putstr(SYNTAX_ERROR_MSG);
             exit(EXIT_SYNTAX_ERROR);
         }
-        if (str[i - 1] == ops[0] &&
+        if (i && str[i - 1] == ops[0] &&
             ((str[i] != ops[2] && str[i] != ops[3]))) {
             my_putstr(SYNTAX_ERROR_MSG);
             exit(EXIT_SYNTAX_ERROR);

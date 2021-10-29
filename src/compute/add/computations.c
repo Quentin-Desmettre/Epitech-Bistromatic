@@ -37,7 +37,7 @@ static char *compute_sub(char *first, char *second, char *base)
         result[i + 2] += index_of(first[i], base) - index_of(second[i], base);
         if (result[i + 2] < 0) {
             first[i - 1]--;
-            result[i + 2] += 10;
+            result[i + 2] += my_strlen(base);
         }
     }
     for (int i = 0; i < len + 2; i++)
