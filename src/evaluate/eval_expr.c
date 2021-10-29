@@ -33,7 +33,8 @@ static char *prio(char *calcul, char *base, char *ops)
 
     if (calcul[i] != ops[0]) {
         free(tempo);
-        tempo2 = evaluate(my_strdup(calcul), base, ops);
+        to_rt = my_strdup(calcul);
+        tempo2 = evaluate(to_rt, base, ops);
         to_rt = replace(calcul, 0, j, tempo2);
         free(tempo2);
         return to_rt;
@@ -46,14 +47,11 @@ static char *prio(char *calcul, char *base, char *ops)
 char *eval_expr(char *str, char *base, char *ops)
 {
     char *tmp;
-    int fr = 0;
 
     while (contain_any_of(str + 1, ops)) {
         tmp = str;
         str = prio(str, base, ops);
-        if (fr)
-            free(tmp);
-        fr = 1;
+        free(tmp);
     }
     return str;
 }

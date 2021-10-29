@@ -23,8 +23,8 @@
     #define EXIT_OPS 84
     #define EXIT_SYNTAX_ERROR 84
     #define EXIT_SUCCESS 0
-    #define SYNTAX_ERROR_MSG "syntax error"
-    #define ERROR_MSG "error"
+    #define SYNTAX_ERROR_MSG "syntax error\n"
+    #define ERROR_MSG "error\n"
 
 typedef struct expr_params {
     char *expr;

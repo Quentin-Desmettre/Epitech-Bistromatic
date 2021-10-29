@@ -15,7 +15,7 @@ void init_with(char *str, char c, int nb)
     }
 }
 
-void insert_at_beg(char **str, char what, int nb)
+void insert_at_beg(char **str, char what, int nb, int is_free)
 {
     char *new = malloc(sizeof(char) * (my_strlen(*str) + nb + 1));
 
@@ -23,6 +23,7 @@ void insert_at_beg(char **str, char what, int nb)
         new[i] = what;
     }
     my_strcpy(new + nb, *str);
+    is_free ? free(*str) : 0;
     *str = new;
 }
 
@@ -45,8 +46,10 @@ char *clean_str(char *str, char *base, char *ops)
     char *new;
     int start = 0;
     int len = my_strlen(str);
-    char null[2] = {base[0], '\0'};
+    char *null = malloc(2);
 
+    null[0] = base[0];
+    null[1] = 0;
     if (str[0] == ops[3]) {
         start++;
         insert_neg = 1;
@@ -56,8 +59,7 @@ char *clean_str(char *str, char *base, char *ops)
     if (start == len)
         return null;
     new = my_strdup(str + start);
-    if (insert_neg)
-        insert_at_beg(&new, ops[3], 1);
+    (insert_neg == 1) ? insert_at_beg(&new, ops[3], 1, 1) : 0;
     free(null);
     return new;
 }

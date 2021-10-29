@@ -14,7 +14,7 @@ char *infin_add(char *fir, char *sec, char *base, char *ops)
 
     if (fir[0] == ops[3] && sec[0] == ops[3]) {
         result = my_add(fir, sec, base, ops);
-        insert_at_beg(&result, ops[3], 1);
+        insert_at_beg(&result, ops[3], 1, 0);
     }
     if (fir[0] == ops[3] && sec[0] != ops[3])
         result = my_sub(sec, fir + 1, 0, &par);

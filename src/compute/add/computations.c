@@ -20,10 +20,10 @@ static void put_same_length(char **first, char **second, char *base, char *ops)
     len_f = my_strlen(*first);
     len_s = my_strlen(*second);
     if (len_f < len_s) {
-        insert_at_beg(first, base[0], len_s - len_f);
+        insert_at_beg(first, base[0], len_s - len_f, 0);
     }
     if (len_s < len_f) {
-        insert_at_beg(second, base[0], len_f - len_s);
+        insert_at_beg(second, base[0], len_f - len_s, 0);
     }
 }
 
@@ -54,14 +54,14 @@ char *my_sub(char *first, char *second, int is_rec, expr_params_t *par)
     if (len_f < len_s) {
         result = my_sub(second, first, 1, par);
         if (!is_rec)
-            insert_at_beg(&result, par->ops[3], 1);
+            insert_at_beg(&result, par->ops[3], 1, 1);
         return result;
     }
     put_same_length(&first, &second, par->base, par->ops);
     if (my_nbr_cmp(first, second, par->base) < 0) {
         result = my_sub(second, first, 1, par);
         if (!is_rec)
-            insert_at_beg(&result, par->ops[3], 1);
+            insert_at_beg(&result, par->ops[3], 1, 1);
         return result;
     }
     return compute_sub(first, second, par->base);
