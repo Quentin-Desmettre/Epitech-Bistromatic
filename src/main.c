@@ -51,6 +51,8 @@ int main(int ac, char **av)
     size = my_getnbr(av[3]);
     expr = get_expr(size);
     check_expr(expr, av[1], av[2]);
+    if (contain_any_of(expr, av[2] + 4))
+        exit(84);
     cleanex(&expr, av[1], av[2]);
     my_putstr(eval_expr(expr, av[1], av[2]));
     return EXIT_SUCCESS;
