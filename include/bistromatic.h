@@ -25,6 +25,13 @@
     #define EXIT_SUCCESS 0
     #define SYNTAX_ERROR_MSG "syntax error"
     #define ERROR_MSG "error"
+
+typedef struct expr_params {
+    char *expr;
+    char *base;
+    char *ops;
+} expr_params_t;
+
     #include "check.h"
     #include "str_manipulations.h"
     #include "evalexpr.h"

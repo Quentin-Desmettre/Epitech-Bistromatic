@@ -7,7 +7,7 @@
 
 #include "bistromatic.h"
 
-char *do_op(char *first, int op, char *second, char *base, char *ops)
+char *do_op(char *first, int op, char *second, expr_params_t *par)
 {
     char *(*fonc[5])(char *, char *, char *, char *);
 
@@ -16,5 +16,5 @@ char *do_op(char *first, int op, char *second, char *base, char *ops)
     //fonc[2] = &infin_mul;
     //fonc[3] = &infin_div;
     //fonc[4] = &infin_mod;
-    return (fonc[op])(first, second, base, ops);
+    return (fonc[op])(first, second, par->base, par->ops);
 }

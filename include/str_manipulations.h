@@ -12,6 +12,6 @@ void init_with(char *str, char c, int nb);
 void insert_at_beg(char **str, char what, int nb);
 int my_nbr_cmp(char *first, char *second, char *base);
 char *clean_str(char *str, char *base, char *ops);
-int index_of(char, char *);
+int index_of(char c, char *str);
 
 #endif

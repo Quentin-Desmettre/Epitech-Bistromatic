@@ -45,26 +45,26 @@ static char *compute_sub(char *first, char *second, char *base)
     return result;
 }
 
-char *my_sub(char *first, char *second, int is_rec, char *base, char *ops)
+char *my_sub(char *first, char *second, int is_rec, expr_params_t *par)
 {
     char *result;
-    int len_f = my_strlen(clean_str(first, base, ops));
-    int len_s = my_strlen(clean_str(second, base, ops));
+    int len_f = my_strlen(clean_str(first, par->base, par->ops));
+    int len_s = my_strlen(clean_str(second, par->base, par->ops));
 
     if (len_f < len_s) {
-        result = my_sub(second, first, 1, base, ops);
+        result = my_sub(second, first, 1, par);
         if (!is_rec)
-            insert_at_beg(&result, ops[3], 1);
+            insert_at_beg(&result, par->ops[3], 1);
         return result;
     }
-    put_same_length(&first, &second, base, ops);
-    if (my_nbr_cmp(first, second, base) < 0) {
-        result = my_sub(second, first, 1, base, ops);
+    put_same_length(&first, &second, par->base, par->ops);
+    if (my_nbr_cmp(first, second, par->base) < 0) {
+        result = my_sub(second, first, 1, par);
         if (!is_rec)
-            insert_at_beg(&result, ops[3], 1);
+            insert_at_beg(&result, par->ops[3], 1);
         return result;
     }
-    return compute_sub(first, second, base);
+    return compute_sub(first, second, par->base);
 }
 
 int index_of(char c, char *str)
