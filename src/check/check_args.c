@@ -5,8 +5,8 @@
 ** check if arguments are valid
 */
 
-#include "../../include/iomanip.h"
-#include "../../include/strmanip.h"
+#include "../../include/lib/iomanip.h"
+#include "../../include/lib/strmanip.h"
 #include <stdlib.h>
 #include "../../include/bistromatic.h"
 

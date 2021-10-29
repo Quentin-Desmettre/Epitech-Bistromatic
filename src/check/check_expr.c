@@ -7,8 +7,8 @@
 
 #include "../../include/bistromatic.h"
 #include <stdlib.h>
-#include "../../include/iomanip.h"
-#include "../../include/strmanip.h"
+#include "../../include/lib/iomanip.h"
+#include "../../include/lib/strmanip.h"
 
 static int check_paren(char const *str, char const *ops)
 {

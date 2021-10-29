@@ -7,7 +7,8 @@
 
 #include "../../include/bistromatic.h"
 #include <stdlib.h>
-#include "../../include/strmanip.h"
+#include "../../include/lib/strmanip.h"
+#include "../../include/check.h"
 
 static int_pair_t lens_to_nb(char const *expr, char const *ops, int i)
 {

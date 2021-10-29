@@ -86,7 +86,8 @@ build:
 	ar rc $(NAME) $(OBJ)
 
 move:
-	cp include/*.h ../../include/
+	mkdir -p ../../include/lib
+	cp include/*.h ../../include/lib
 
 clean:
 	rm -f $(OBJ)

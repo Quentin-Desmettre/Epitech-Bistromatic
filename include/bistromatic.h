@@ -26,28 +26,6 @@
     #define SYNTAX_ERROR_MSG "syntax error"
     #define ERROR_MSG "error"
 
-typedef struct int_pair {
-    int a;
-    int b;
-} int_pair_t;
-
-void check_all(int ac, char **av);
-void check_expr(char const *str, char const *base, char const *ops);
 void usage(void);
-void cleanex(char **expr, char *base, char *ops);
-char *evaluate(char *expr, char *base, char *ops);
-char *get_next_number(char *str, int start, char *base, char *ops);
-char *get_prev_number(char *str, int start, char *base, char *ops);
-char *do_op(char *first, int op, char *second, char *base, char *ops);
-int str_is_num(char const *str);
-void init_with(char *str, char c, int nb);
-void insert_at_beg(char **str, char what, int nb);
-int my_nbr_cmp(char *first, char *second, char *base);
-char *clean_str(char *str, char *base, char *ops);
-int index_of(char, char *);
-char *infin_add(char *fir, char *sec, char *base, char *ops);
-char *infin_sub(char *fir, char *sec, char *base, char *ops);
-char *my_add(char *, char *, char *, char *);
-char *my_sub(char *, char *, int, char *, char *);
 
 #endif

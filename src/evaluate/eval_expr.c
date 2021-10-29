@@ -4,10 +4,11 @@
 ** File description:
 ** eval.c
 */
-#include "../../include/strmanip.h"
-#include "../../include/iomanip.h"
+#include "../../include/lib/strmanip.h"
+#include "../../include/lib/iomanip.h"
 #include "../../include/bistromatic.h"
 #include <stdlib.h>
+#include "../../include/
 
 static char *val_tempo(char *calcul, int *i, int *j, char *ops)
 {
