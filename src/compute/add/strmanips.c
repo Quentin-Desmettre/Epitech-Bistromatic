@@ -45,10 +45,8 @@ char *clean_str(char *str, char *base, char *ops)
     char *new;
     int start = 0;
     int len = my_strlen(str);
-    char *null = malloc(2);
+    char null[2] = {base[0], '\0'};
 
-    null[0] = base[0];
-    null[1] = '\0';
     if (str[0] == ops[3]) {
         start++;
         insert_neg = 1;
@@ -61,6 +59,5 @@ char *clean_str(char *str, char *base, char *ops)
     if (insert_neg)
         insert_at_beg(&new, ops[3], 1);
     free(null);
-    //free(str);
     return new;
 }

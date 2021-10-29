@@ -32,7 +32,7 @@ void check_base_ops(char const *base, char const *ops)
 {
     if (contain_any_of(base, ops)) {
         my_putstr(SYNTAX_ERROR_MSG);
-	exit(EXIT_SYNTAX_ERROR);
+        exit(EXIT_SYNTAX_ERROR);
     }
     check_redundance(base);
     check_redundance(ops);

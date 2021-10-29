@@ -36,13 +36,10 @@ static char *prio(char *calcul, char *base, char *ops)
         tempo2 = evaluate(my_strdup(calcul), base, ops);
         to_rt = replace(calcul, 0, j, tempo2);
         free(tempo2);
-//        free(calcul);
         return to_rt;
     }
     tempo2 = evaluate(tempo, base, ops);
     to_rt = replace(calcul, i, j - i + 1, tempo2);
-    //free(tempo);
-    //  free(tempo2);
     return to_rt;
 }
 
