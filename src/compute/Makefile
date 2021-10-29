@@ -16,10 +16,20 @@ INCLUDE = ../../include/
 LIB = ../../lib/my/
 
 all:
+	make -C add/
+	make -c sub/
+	make -C mul/
+	make -C div/
+	make -C mod/
 	gcc $(FLAGS) $(SRC) -I $(INCLUDE) -L $(LIB) -lmy
 	cp $(OBJ) ../../
 
 clean:
+	make -C add/ clean
+	make -C sub/ clean
+	make -C mul/ clean
+	make -C div/ clean
+	make -C mod/ clean
 	rm -f $(OBJ)
 
 re: clean all
