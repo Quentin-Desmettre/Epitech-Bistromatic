@@ -8,6 +8,14 @@
 #include "bistromatic.h"
 #include <stdlib.h>
 
+static int strlen_free(char *str)
+{
+    int len = my_strlen(str);
+
+    free(str);
+    return len;
+}
+
 static void put_same_length(char **first, char **second, char *base, char *ops)
 {
     int len_f;
@@ -21,9 +29,11 @@ static void put_same_length(char **first, char **second, char *base, char *ops)
     len_s = my_strlen(*second);
     if (len_f < len_s) {
         insert_at_beg(first, base[0], len_s - len_f, 0);
+        *second = my_strdup(*second);
     }
     if (len_s < len_f) {
         insert_at_beg(second, base[0], len_f - len_s, 0);
+        *first = my_strdup(*first);
     }
 }
 
@@ -35,22 +45,26 @@ static char *compute_sub(char *first, char *second, char *base)
     init_with(result, '\0', len + 3);
     for (int i = len - 1; i >= 0; i--) {
         result[i + 2] += index_of(first[i], base) - index_of(second[i], base);
-        if (result[i + 2] < 0) {
+        if (result[i + 2] < 0 && i) {
             first[i - 1]--;
             result[i + 2] += my_strlen(base);
         }
     }
     for (int i = 0; i < len + 2; i++)
         result[i] = base[result[i]];
+    free(first);
+    free(second);
     return result;
 }
 
 char *my_sub(char *first, char *second, int is_rec, expr_params_t *par)
 {
     char *result;
-    int len_f = my_strlen(clean_str(first, par->base, par->ops));
-    int len_s = my_strlen(clean_str(second, par->base, par->ops));
+    int len_f = strlen_free(clean_str(first, par->base, par->ops));
+    int len_s = strlen_free(clean_str(second, par->base, par->ops));
 
+    second = my_strdup(second);
+    first = my_strdup(first);
     if (len_f < len_s) {
         result = my_sub(second, first, 1, par);
         if (!is_rec)
@@ -65,15 +79,6 @@ char *my_sub(char *first, char *second, int is_rec, expr_params_t *par)
         return result;
     }
     return compute_sub(first, second, par->base);
-}
-
-int index_of(char c, char *str)
-{
-    for (int i = 0; str[i]; i++) {
-        if (str[i] == c)
-            return i;
-    }
-    return -1;
 }
 
 char *my_add(char *first, char *second, char *base, char *ops)
@@ -93,5 +98,7 @@ char *my_add(char *first, char *second, char *base, char *ops)
     }
     for (int i = 0; i < len + 1; i++)
         result[i] = base[result[i]];
+    free(first);
+    free(second);
     return result;
 }

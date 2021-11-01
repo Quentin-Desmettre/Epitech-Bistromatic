@@ -7,7 +7,9 @@
 
 SRC = eval_expr.c \
 	evaluate_simple.c \
-	get_prev_next.c
+	get_prev_next.c \
+	nb_to_str.c \
+	convert_base.c
 
 OBJ = $(SRC:.c=.o)
 
