@@ -8,8 +8,8 @@
 SRC = eval_expr.c \
 	evaluate_simple.c \
 	get_prev_next.c \
-	nb_to_str.c \
-	convert_base.c
+	convert_base.c \
+	nb_to_str.c
 
 OBJ = $(SRC:.c=.o)
 
