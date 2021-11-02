@@ -25,7 +25,8 @@ void init_with_int(unsigned long long *array, int what, int len)
     }
 }
 
-ull *replace_digit(char *fir, char *sec, char *base) {
+ull *replace_digit(char *fir, char *sec, char *base)
+{
     int len = my_strlen(fir) + my_strlen(sec) + 2;
     ull *tmp = malloc(sizeof(ull) * (len + 1));
     int len_i = my_strlen (fir);

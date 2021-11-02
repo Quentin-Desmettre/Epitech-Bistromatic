@@ -7,6 +7,7 @@
 #include "stdlib.h"
 #include "unistd.h"
 #include "bistromatic.h"
+#include "div.h"
 
 void append_char(char **str, char c, int is_free)
 {
@@ -23,7 +24,7 @@ void append_char(char **str, char c, int is_free)
 }
 
 void search_who_is_upper_n(char **ten_n, char **ten_n_b, char *r,
-                           expr_params_t *par)
+    expr_params_t *par)
 {
     char *tmp = my_strdup(*ten_n);
     char *tmp_n = my_strdup(*ten_n_b);
@@ -76,26 +77,6 @@ void replace_add(char **q, char *ten_n, int c, expr_params_t *par)
     free(ten_n_c);
 }
 
-void replace_sub(char **r, char *ten_n_bc, expr_params_t *par)
-{
-    re_alloc(r, infin_sub(*r, ten_n_bc, par->base, par->ops), 1);
-}
-
-void free_all(char *ten_n_b, char *ten_n, char *ten_n_bc)
-{
-    free(ten_n_bc);
-    free(ten_n);
-    free(ten_n_b);
-}
-
-void error_inf_div(char *b)
-{
-    if (my_strcmp(b, "0") == 0) {
-        write(2, "error", 5);
-        exit(84);
-    }
-}
-
 char *infin_div(char *a, char *b, char *base, char *ops)
 {
     char *q = my_strdup("0");
@@ -119,4 +100,3 @@ char *infin_div(char *a, char *b, char *base, char *ops)
     free(r);
     return (q);
 }
-

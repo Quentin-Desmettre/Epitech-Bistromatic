@@ -9,5 +9,5 @@
 
 int main(int ac, char **av)
 {
-    return bistromatic(ac, av);    
+    return bistromatic(ac, av);
 }

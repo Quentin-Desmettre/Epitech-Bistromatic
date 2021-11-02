@@ -5,7 +5,8 @@
 ## makefile for add
 ##
 
-SRC = div.c
+SRC = div.c \
+		inf_div.c
 
 OBJ = $(SRC:.c=.o)
 
