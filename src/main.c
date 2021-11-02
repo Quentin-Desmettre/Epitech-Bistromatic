@@ -5,6 +5,8 @@
 ** main file
 */
 
+#include "bistromatic.h"
+
 int main(int ac, char **av)
 {
     return bistromatic(ac, av);    

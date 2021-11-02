@@ -8,6 +8,8 @@
 SRC = main.c \
 		bistromatic.c
 
+TESTS = ../tests/test_check.c
+
 OBJ = $(SRC:.c=.o)
 
 FLAGS = -c -g -Wall -Wextra
@@ -23,8 +25,15 @@ all:
 	gcc $(FLAGS) -I $(INCLUDE) $(SRC) -L $(LIB) -lmy
 	cp $(OBJ) ../
 
+tests:
+	make -C check/ tests
+	make -C compute/ tests
+	make -C evaluate/ tests
+	gcc $(FLAGS) -I $(INCLUDE) bistromatic.c $(TESTS) -L $(LIB) -lmy --coverage -lcriterion
+	cp *.o ../
+
 clean:
-	rm -f $(OBJ)
+	rm -f *.o
 	make -C check/ clean
 	make -C compute/ clean
 	make -C evaluate/ clean

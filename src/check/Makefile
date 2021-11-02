@@ -22,6 +22,10 @@ all:
 	gcc $(FLAGS) -I $(INCLUDE) $(SRC) -L $(LIB) -lmy
 	cp $(OBJ) ../../
 
+tests:
+	gcc $(FLAGS) -I $(INCLUDE) $(SRC) -L $(LIB) -lmy --coverage -lcriterion
+	cp $(OBJ) ../../
+
 clean:
 	rm -f $(OBJ)
 

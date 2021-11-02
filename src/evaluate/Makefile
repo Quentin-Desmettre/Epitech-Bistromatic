@@ -8,7 +8,7 @@
 SRC = eval_expr.c \
 	evaluate_simple.c \
 	get_prev_next.c \
-	nb_to_str.c 
+	nb_to_str.c
 #convert_base.c
 
 OBJ = $(SRC:.c=.o)
@@ -23,7 +23,11 @@ all:
 	gcc $(FLAGS) -I $(INCLUDE) $(SRC) -L $(LIB) -lmy
 	cp $(OBJ) ../../
 
+tests:
+	gcc $(FLAGS) -I $(INCLUDE) $(SRC) -L $(LIB) -lmy --coverage -lcriterion
+	cp $(OBJ) ../../
+
 clean:
-	rm -f $(OBJ)
+	rm -f *.o
 
 re: clean all
