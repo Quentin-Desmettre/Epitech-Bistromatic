@@ -54,5 +54,6 @@ int bistromatic(int ac, char **av)
     cleanex(&expr, av[1], av[2]);
     expr = (eval_expr(expr, av[1], av[2]));
     my_putstr(expr);
+    free(expr);
     return EXIT_SUCCESS;
 }

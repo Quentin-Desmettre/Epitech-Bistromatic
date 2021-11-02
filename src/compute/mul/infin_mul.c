@@ -32,6 +32,7 @@ ull *replace_digit(char *fir, char *sec, char *base) {
     int len_j = my_strlen (sec);
     int len_base = my_strlen (base);
 
+    init_with_int(tmp, 0, len + 1);
     for (int i = 0; fir[i]; i++)
         for (int j = 0; sec[j]; j++) {
             tmp[len - i - j - 1] += index_of (fir[len_i - i - 1], base) *
@@ -45,10 +46,9 @@ ull *replace_digit(char *fir, char *sec, char *base) {
 char *my_mul(char *fir, char *sec, char *base, char *ops)
 {
     int len = my_strlen(fir) + my_strlen(sec) + 2;
-    ull *tmp = malloc(sizeof(ull) * (len + 1));
+    ull *tmp;
     char *result = malloc(len + 1);
 
-    init_with_int(tmp, 0, len + 1);
     my_memset(result, 0, len + 1);
     tmp = replace_digit(fir, sec, base);
     for (int i = 0; i < len; i++)
