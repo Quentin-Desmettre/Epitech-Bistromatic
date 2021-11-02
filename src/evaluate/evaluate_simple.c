@@ -12,7 +12,7 @@ static char *compute_raw(int start, int *len, int *len_1, expr_params_t *par)
 {
     char *first = get_prev_number(par->expr, start, par->base, par->ops);
     char *second = get_next_number(par->expr, start, par->base, par->ops);
-    char *tmp = do_op(first, index_of(par->expr[start], par->ops + 2),
+    char *tmp = do_op(first, index_of(par->expr[start], par->ops) - 2,
     second, par);
 
     *len = my_strlen(first) + my_strlen(second) + 1;
