@@ -10,6 +10,5 @@ void *my_memset(char *str, int c, int n)
     for (int i = 0; i < n; i++) {
         str[i] = c;
     }
-    str[n + 1] = '\0';
     return (str);
 }

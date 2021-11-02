@@ -27,8 +27,8 @@ all:
 clean:
 	make -C add/ clean
 	make -C sub/ clean
-#	make -C mul/ clean
-#	make -C div/ clean
+	make -C mul/ clean
+	make -C div/ clean
 #	make -C mod/ clean
 	rm -f $(OBJ)
 
