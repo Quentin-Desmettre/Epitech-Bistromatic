@@ -18,8 +18,8 @@ LIB = ../../lib/my/
 all:
 	make -C add/
 	make -C sub/
-#	make -C mul/
-#	make -C div/
+	make -C mul/
+	make -C div/
 #	make -C mod/
 	gcc $(FLAGS) $(SRC) -I $(INCLUDE) -L $(LIB) -lmy
 	cp $(OBJ) ../../
