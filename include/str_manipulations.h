@@ -14,5 +14,6 @@ int my_nbr_cmp(char *first, char *second, char *base);
 char *clean_str(char *str, char *base, char *ops);
 int index_of(char c, char *str);
 int int_to_str(int nb, char **str);
+void re_alloc(char **str, char *new, int is_free);
 
 #endif
