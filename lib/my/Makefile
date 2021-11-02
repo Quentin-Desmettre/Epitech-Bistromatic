@@ -53,7 +53,8 @@ STRMANIP = my_strcat.c              \
 	my_str_to_word_array.c   \
 	my_revstr.c \
 	contain.c \
-	replace_str.c
+	replace_str.c \
+	my_memset.c
 
 OBJ = $(GRAPHICS:.c=.o) \
 	$(IOMANIP:.c=.o) \
