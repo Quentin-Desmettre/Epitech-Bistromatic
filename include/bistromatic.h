@@ -39,6 +39,8 @@ typedef struct expr_params {
     #include "lib/iomanip.h"
     #include "lib/strmanip.h"
 
+typedef unsigned long long ull;
+
 void usage(void);
 
 #endif

@@ -16,8 +16,8 @@ void search_who_is_upper_n(char **ten_n, char **ten_n_b, char *r)
     while (my_strcmp(*ten_n_b, r) <= 0) {
         tmp = *ten_n_b;
         tmp_n = *ten_n;
-        *ten_n = mul(*ten_n, "10");
-        *ten_n_b = mul(*ten_n_b, "10");
+        *ten_n = infin_mul(*ten_n, "10");
+        *ten_n_b = infin_mul(*ten_n_b, "10");
         free(tmp_n);
         free(tmp);
     }
@@ -29,7 +29,7 @@ void search_who_is_upper_c(char **ten_n_bc, char *r, int *c)
 
     while (my_strcmp(*ten_n_bc, r) <= 0) {
         int_to_str(*c, *c_char);
-        *ten_n_bc = mul(*ten_n_bc, c_char);
+        *ten_n_bc = infin_mul(*ten_n_bc, c_char);
         *c += 1;
     }
 }
@@ -39,7 +39,7 @@ void replace_add(char **q, char *ten_n, int c)
     char *c_char;
 
     int_to_str(c, *c_char);
-    ten_n = mul(ten_n, c_char);
+    ten_n = infin_mul(ten_n, c_char);
     *q = infin_add(*q, ten_n);
 }
 
@@ -48,7 +48,7 @@ void replace_sub(char **r, char *ten_n_bc)
     *r = infin_sub(*r, ten_n_bc);
 }
 
-int div(char *a, char *b)
+char *infin_div(char *a, char *b)
 {
     char *q = "0";
     char *r = a;
@@ -68,13 +68,9 @@ int div(char *a, char *b)
         replace_sub(&r, ten_n_bc);
     }
     my_putstr(q);
+    my_putchar('\n');
     my_putstr(r);
-    return (0);
+    my_putchar('\n');
+    return (q);
 }
 
-int main(int ac, char **argv)
-{
-    if (ac == 3)
-        div(argv[1], argv[2]);
-    return (0);
-}
