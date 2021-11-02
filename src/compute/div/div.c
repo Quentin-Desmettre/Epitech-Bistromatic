@@ -8,30 +8,49 @@
 #include "unistd.h"
 #include "bistromatic.h"
 
+void append_char(char **str, char c, int is_free)
+{
+    char *tmp = *str;
+    int len = my_strlen(tmp) + 1;
+    char *new = malloc(sizeof(char) * (len + 1));
+
+    my_strcpy(new, tmp);
+    new[len - 1] = c;
+    new[len] = '\0';
+    if (is_free)
+        free(tmp);
+    *str = new;
+}
+
 void search_who_is_upper_n(char **ten_n, char **ten_n_b, char *r,
                            expr_params_t *par)
 {
-    //char *tmp;
-    //char *tmp_n;
+    char *tmp;
+    int len = my_strlen(*ten_n_b);
 
-    while (my_strcmp(*ten_n_b, r) <= 0) {
-        //tmp = *ten_n_b;
-        //tmp_n = *ten_n;
-        *ten_n = infin_mul(*ten_n, "10", par->base, par->ops);
-        *ten_n_b = infin_mul(*ten_n_b, "10", par->base, par->ops);
-        //free(tmp_n);
-        //free(tmp);
+    while (my_nbr_cmp(*ten_n_b, r, par->base) <= 0) {
+        append_char(ten_n, '0', 1);
+        append_char(ten_n_b, '0', 1);
+    }
+    len = my_strlen(*ten_n_b);
+    if (len > 1)  {
+        *ten_n_b[len - 1] = '\0';
     }
 }
 
 void search_who_is_upper_c(char **ten_n_bc, char *r, int *c, expr_params_t *par)
 {
     char *c_char;
+    int len = my_strlen(*ten_n_bc);
 
-    while (my_strcmp(*ten_n_bc, r) <= 0) {
+    while (my_nbr_cmp(*ten_n_bc, r, par->base) <= 0) {
         int_to_str(*c, &c_char);
         *ten_n_bc = infin_mul(*ten_n_bc, c_char, par->base, par->ops);
         *c += 1;
+    }
+    len = my_strlen(*ten_n_bc);
+    if (len > 1)  {
+        *ten_n_bc[len - 1] = '\0';
     }
 }
 
@@ -69,10 +88,7 @@ char *infin_div(char *a, char *b, char *base, char *ops)
         replace_add(&q, ten_n, c, &par);
         replace_sub(&r, ten_n_bc, &par);
     }
-    my_putstr(q);
-    my_putchar('\n');
-    my_putstr(r);
-    my_putchar('\n');
+    printf("\n%s\n", q);
     return (q);
 }
 
