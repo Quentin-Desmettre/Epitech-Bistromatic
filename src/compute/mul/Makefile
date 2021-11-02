@@ -5,7 +5,7 @@
 ## makefile for infin_sub
 ##
 
-SRC = main.c
+SRC = infin_mul.c
 
 OBJ = $(SRC:.c=.o)
 
