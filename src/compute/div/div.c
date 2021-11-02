@@ -48,8 +48,9 @@ void search_who_is_upper_n(char **ten_n, char **ten_n_b, char *r,
 char *search_who_is_upper_c(char *ten_n_b, char *r, int *c, expr_params_t *par)
 {
     char *c_char;
-    char *ten_n_bc = my_strdup(ten_n_b);
+    char *ten_n_bc = NULL;
 
+    ten_n_bc = my_strdup(ten_n_b);
     for (int i = 2; my_nbr_cmp(ten_n_bc, r, par->base) <= 0; i++) {
         free(ten_n_bc);
         int_to_str(i, &c_char);
@@ -58,7 +59,7 @@ char *search_who_is_upper_c(char *ten_n_b, char *r, int *c, expr_params_t *par)
     }
     *c = my_getnbr(c_char);
     free(ten_n_bc);
-    re_alloc(&ten_n_bc, infin_mul(ten_n_b, c_char, par->base, par->ops), 0);
+    ten_n_bc = infin_mul(ten_n_b, c_char, par->base, par->ops);
     free(c_char);
     return (ten_n_bc);
 }
@@ -87,6 +88,14 @@ void free_all(char *ten_n_b, char *ten_n, char *ten_n_bc)
     free(ten_n_b);
 }
 
+void error_inf_div(char *b)
+{
+    if (my_strcmp(b, "0") == 0) {
+        write(2, "error", 5);
+        exit(84);
+    }
+}
+
 char *infin_div(char *a, char *b, char *base, char *ops)
 {
     char *q = my_strdup("0");
@@ -97,10 +106,7 @@ char *infin_div(char *a, char *b, char *base, char *ops)
     int c = 1;
     expr_params_t par = {0, base, ops};
 
-    if (my_strcmp(b, "0") == 0) {
-        write(2, "error", 5);
-        exit(84);
-    }
+    error_inf_div(b);
     while ((my_nbr_cmp(r, b, base) >= 0) && r[0] != '-') {
         ten_n_b = my_strdup(b);
         ten_n = my_strdup("1");
