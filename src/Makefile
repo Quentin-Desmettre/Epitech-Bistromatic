@@ -5,7 +5,8 @@
 ## makefile for all source code
 ##
 
-SRC = main.c
+SRC = main.c \
+		bistromatic.c
 
 OBJ = $(SRC:.c=.o)
 
