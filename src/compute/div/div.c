@@ -76,9 +76,9 @@ char *infin_div(char *a, char *b, char *base, char *ops)
 {
     char *q = my_strdup("0");
     char *r = my_strdup(a);
-    char *ten_n_b = my_strdup(b);
-    char *ten_n = my_strdup("1");
-    char *ten_n_bc = my_strdup("1");
+    char *ten_n_b;
+    char *ten_n;
+    char *ten_n_bc;
     int c = 1;
     expr_params_t par = {0, base, ops};
 
@@ -94,7 +94,11 @@ char *infin_div(char *a, char *b, char *base, char *ops)
         ten_n_bc = search_who_is_upper_c(ten_n_b, r, &c, &par);
         replace_add(&q, ten_n, c, &par);
         replace_sub(&r, ten_n_bc, &par);
+        free(ten_n_bc);
+        free(ten_n);
+        free(ten_n_b);
     }
+    free(r);
     return (q);
 }
 
