@@ -4,14 +4,43 @@
 ** File description:
 ** div
 */
+#include "stdlib.h"
+#include "unistd.h"
+#include "bistromatic.h"
 
-char *div(char *fir, char *sec, char *base, char *ops)
+void search_who_is_upper_n(char **ten_n, char **result, char *r)
 {
-    char *result;
     char *tmp;
-    expr_params_t par = {0, base, ops};
+    char *tmp_n;
 
-    
+    while (my_strcmp(*result, r) <= 0) {
+        tmp = *result;
+        tmp_n = *ten_n;
+        *ten_n = mul(*ten_n, "10");
+        *result = mul(*result, "10");
+        free(tmp_n);
+        free(tmp);
+    }
+}
+
+void search_who_is_upper_c();
+
+char *div(char *a, char *b)
+{
+    char *q = "0";
+    char *r = a;
+    char *c = "0";
+    char *ten_n_b = b;
+    char *ten_n = "1";
+
+    if (my_strcmp(sec, "0") == 0) {
+        write(2, "error", 5);
+        exit;
+    }
+    while (my_strcmp(r, sec) >= 0) {
+        search_who_is_upper_n(&ten_n, &ten_n_b, r);
+        search_who_is_upper_c()
+    }
 }
 
 int main(int ac, char **argv)
