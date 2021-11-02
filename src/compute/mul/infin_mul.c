@@ -63,17 +63,17 @@ char *infin_mul(char *fir, char *sec, char *base, char *ops)
     int len = my_strlen(fir) + my_strlen(sec) + 2;
     char *result = malloc(len + 1);
 
-    if (fir[0] == '-' && sec[0] == '-')
+    if (fir[0] == ops[3] && sec[0] == ops[3])
         result = my_mul(fir + 1, sec + 1, base, ops);
-    if (fir[0] != '-' && sec[0] != '-')
+    if (fir[0] != ops[3] && sec[0] != ops[3])
         result = my_mul(fir, sec, base, ops);
-    if (fir[0] == '-' && sec[0] != '-') {
+    if (fir[0] == ops[3] && sec[0] != ops[3]) {
         result = my_mul(fir + 1, sec, base, ops);
-        insert_at_beg(&result, '-', 1, 1);
+        insert_at_beg(&result, ops[3], 1, 1);
     }
-    if (fir[0] != '-' && sec[0] == '-') {
+    if (fir[0] != ops[3] && sec[0] == ops[3]) {
         result = my_mul(fir, sec + 1, base, ops);
-        insert_at_beg(&result, '-', 1, 1);
+        insert_at_beg(&result, ops[3], 1, 1);
     }
     return (result);
 }
