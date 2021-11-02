@@ -29,11 +29,13 @@ static void replace_negs(char **expr, char *base, char *ops, int i)
 {
     int nb_neg = lens_to_nb(*expr, ops, i).a;
     int op_len = lens_to_nb(*expr, ops, i).b;
-    char *new_ops = (nb_neg % 2 == 0) ? ("") : ("-");
+    char new_ops[2] = {ops[3], 0};
     char *tmp = *expr;
 
+    if (nb_neg % 2 != 0)
+        new_ops[0] = 0;
     if (i != 0 && contain(base, (*expr)[i - 1])) {
-        new_ops = (nb_neg % 2 == 0) ? ("+") : ("-");
+        new_ops[0] = (nb_neg % 2 == 0) ? (ops[2]) : (ops[3]);
     }
     *expr = replace(*expr, i, op_len, new_ops);
     free(tmp);
