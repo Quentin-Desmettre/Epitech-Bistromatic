@@ -11,16 +11,16 @@
 void search_who_is_upper_n(char **ten_n, char **ten_n_b, char *r,
                            expr_params_t *par)
 {
-    char *tmp;
-    char *tmp_n;
+    //char *tmp;
+    //char *tmp_n;
 
     while (my_strcmp(*ten_n_b, r) <= 0) {
-        tmp = *ten_n_b;
-        tmp_n = *ten_n;
+        //tmp = *ten_n_b;
+        //tmp_n = *ten_n;
         *ten_n = infin_mul(*ten_n, "10", par->base, par->ops);
         *ten_n_b = infin_mul(*ten_n_b, "10", par->base, par->ops);
-        free(tmp_n);
-        free(tmp);
+        //free(tmp_n);
+        //free(tmp);
     }
 }
 

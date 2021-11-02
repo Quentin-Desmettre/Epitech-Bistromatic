@@ -52,8 +52,8 @@ static char *compute_sub(char *first, char *second, char *base)
     }
     for (int i = 0; i < len + 2; i++)
         result[i] = base[result[i]];
-    free(first);
-    free(second);
+    //free(first);
+    //free(second);
     return result;
 }
 
