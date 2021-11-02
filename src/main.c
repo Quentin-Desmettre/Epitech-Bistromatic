@@ -42,7 +42,7 @@ static char *get_expr(int const read_size)
     return expr;
 }
 
-int main(int ac, char **av)
+int bistromatic(int ac, char **av)
 {
     int size = 0;
     char *expr;
@@ -51,9 +51,13 @@ int main(int ac, char **av)
     size = my_getnbr(av[3]);
     expr = get_expr(size);
     check_expr(expr, av[1], av[2]);
-    if (contain_any_of(expr, av[2] + 4))
-        exit(84);
     cleanex(&expr, av[1], av[2]);
-    my_putstr(eval_expr(expr, av[1], av[2]));
+    expr = (eval_expr(expr, av[1], av[2]));
+    my_putstr(expr);
     return EXIT_SUCCESS;
+}
+
+int main(int ac, char **av)
+{
+    return bistromatic(ac, av);    
 }
