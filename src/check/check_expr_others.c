@@ -8,7 +8,7 @@
 #include "bistromatic.h"
 #include <stdlib.h>
 
-static int count_occurences(char const c, char const *str)
+int count_occurences(char const c, char const *str)
 {
     int oc = 0;
 
@@ -18,7 +18,7 @@ static int count_occurences(char const c, char const *str)
     return oc;
 }
 
-static int check_redundance(char const *str)
+int check_redundance(char const *str)
 {
     for (int i = 0; str[i]; i++) {
         if (count_occurences(str[i], str) > 1) {

@@ -8,7 +8,7 @@
 #include "bistromatic.h"
 #include <stdlib.h>
 
-static int check_paren(char const *str, char const *ops)
+int check_paren(char const *str, char const *ops)
 {
     int stack = 0;
 
@@ -29,7 +29,7 @@ static int check_paren(char const *str, char const *ops)
     return 1;
 }
 
-static int check_double_paren(char const *str, char const *ops, int i)
+int check_double_paren(char const *str, char const *ops, int i)
 {
     if (str[i] == ops[0] && str[i + 1] == ops[1]) {
         my_putstr(SYNTAX_ERROR_MSG);
@@ -38,7 +38,7 @@ static int check_double_paren(char const *str, char const *ops, int i)
     return 1;
 }
 
-static int check_double_ops(char const *str, char const *ops, int i)
+int check_double_ops(char const *str, char const *ops, int i)
 {
     if (contain(ops + 2, str[i]) && contain(ops + 2, str[i + 1])) {
         if (str[i + 1] != ops[2] && str[i + 1] != ops[3]) {
@@ -49,7 +49,7 @@ static int check_double_ops(char const *str, char const *ops, int i)
     return 1;
 }
 
-static int check_ops_paren(char const *str, char const *base,
+int check_ops_paren(char const *str, char const *base,
     char const *ops, int i)
 {
     if (contain(base, str[i]) &&

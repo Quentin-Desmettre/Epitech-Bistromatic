@@ -8,59 +8,65 @@ void redirect_all_stdout(void)
     cr_redirect_stderr();
 }
 
-Test (errors, arguments_len, .init=redirect_all_stdout)
+Test (errors, arguments_len, .init = redirect_all_stdout)
 {
-    check_nb_args(4);
-    cr_expect_stdout_eq_str("");
-}
-/*
-Test (errors, base_len, .init=redirect_all_stdout)
-{
-    check_base("0123456789");
-    cr_expect_stdout_eq_str("");
-    check_base("0");
-    cr_expect_stdout_eq_str(SYNTAX_ERROR_MSG, "");
-    check_base("azbcdfghqtyeà987654321FKLMPOIUYH");
-    cr_expect_stdout_eq_str("");
-}
-
-Test (errors, ops_len, .init=redirect_all_stdout)
-{
-    check_ops("()+-*//*%");
-    cr_expect_stdout_eq_str("");
-    check_ops("abcdefg");
-    cr_expect_stdout_eq_str("");
-    check_ops("()+-*//*");
+    cr_expect(check_nb_args(4) == 1);
+    cr_expect(check_nb_args(-1) == 0);
     cr_expect_stdout_eq_str(SYNTAX_ERROR_MSG);
 }
-Test (errors, help, .init=redirect_all_stdout)
+
+Test (errors, base_len, .init = redirect_all_stdout)
 {
-    char **array = my_str_to_word_array("a.out -h");
-    check_help(2, array);
+    cr_expect(check_base("0123456789") == 1);
+    cr_expect(check_base("0") == 0);
+    cr_expect_stdout_eq_str(SYNTAX_ERROR_MSG);
+    cr_expect(check_base("azbcdfghqtyeà987654321FKLMPOIUYH") == 1);
+}
+
+Test (errors, ops_len, .init = redirect_all_stdout)
+{
+    cr_expect(check_ops("()+-*/%") == 1);
+    cr_expect(check_ops("") == 0);
+    cr_expect_stdout_eq_str(SYNTAX_ERROR_MSG);
+}
+Test (errors, help, .init = redirect_all_stdout)
+{
+    char **array = malloc(16);
+    array[0] = "jytqe";
+    array[1] = "-h";
+    cr_expect(check_help(2, array) == 0);
     cr_expect_stdout_eq_str("USAGE\n./calc base operators size_read\n\n"
     "DESCRIPTION\n- base: all the symbols of the base\n"
     "- operators: the symbols for the parentheses and the 5 operators\n"
     "- size_read: numbers of characters to be read\n", "");
-    check_help(3, array);
-    cr_expect_stdout_eq_str("");
-    char **array_2 = my_str_to_word_array("a.out help");
-    check_help(2, array_2);
-    cr_expect_stdout_eq_str("");
+    cr_expect(check_help(3, array) == 1);
+    char **array_2 = my_str_to_word_array("aout help");
+    cr_expect(check_help(2, array_2) == 1);
 }
-Test (errors, all, .init=redirect_all_stdout)
+Test (errors, all, .init = redirect_all_stdout)
 {
-    char **array = my_str_to_word_array("a.out -h");
-    char **array_base = my_str_to_word_array("a.out 0123456 ()+-*//*%");
-    check_all(2, array);
+    char **array = malloc(sizeof(char *) * 3);
+    array[0] = "jytqe";
+    array[1] = "-h";
+    array[2] = 0;
+    char **array_base = malloc(sizeof(char *) * 4);
+    array_base[0] = "jyesyf";
+    array_base[1] = "0123456789";
+    array_base[2] = "()+-*/%";
+    array_base[3] = 0;
+    cr_expect(check_all(2, array) == 0);
     cr_expect_stdout_eq_str("USAGE\n./calc base operators size_read\n\n"
     "DESCRIPTION\n- base: all the symbols of the base\n"
     "- operators: the symbols for the parentheses and the 5 operators\n"
-    "- size_read: numbers of characters to be read\n", "");
-    check_all(3, array);
-    cr_expect_stdout_eq_str(SYNTAX_ERROR_MSG, "");
-    check_all(4, array_base);
-    cr_expect_stdout_eq_str("", "");
-    check_all(4, array_base);
-    cr_expect_stdout_eq_str("", "");
+    "- size_read: numbers of characters to be read\n");
+    cr_expect(check_all(4, array_base) == 1);
 }
-*/
+
+Test (errors, all_second, .init = redirect_all_stdout)
+{
+    char **array = malloc(sizeof(char *) * 3);
+    array[0] = "jytqe";
+    array[1] = "juksef";
+    cr_assert(check_all(2, array) == 0);
+    cr_assert_stdout_eq_str(SYNTAX_ERROR_MSG);
+}
