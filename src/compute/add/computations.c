@@ -37,21 +37,23 @@ static void put_same_length(char **first, char **second, char *base, char *ops)
     }
 }
 
-static char *compute_sub(char *first, char *second, char *base)
+static char *compute_sub(char *first, char *second, char *base, char *ops)
 {
     int len = my_strlen(first);
-    char *result = malloc(sizeof(char) * (len + 3));
+    char *result = malloc(sizeof(char) * (len + 2));
 
-    init_with(result, '\0', len + 3);
+    init_with(result, 0, len + 2);
     for (int i = len - 1; i >= 0; i--) {
-        result[i + 2] += index_of(first[i], base) - index_of(second[i], base);
-        if (result[i + 2] < 0 && i) {
+        result[i + 1] += index_of(first[i], base) - index_of(second[i], base);
+        if (result[i + 1] < 0 && i) {
             first[i - 1]--;
-            result[i + 2] += my_strlen(base);
+            result[i + 1] += my_strlen(base);
         }
     }
-    for (int i = 0; i < len + 2; i++)
+    for (int i = 0; i < len + 1; i++) {
         result[i] = base[(int) result[i]];
+    }
+    re_alloc(&result, clean_str(result, base, ops), 1);
     return result;
 }
 
@@ -76,7 +78,7 @@ char *my_sub(char *first, char *second, int is_rec, expr_params_t *par)
             insert_at_beg(&result, par->ops[3], 1, 1);
         return result;
     }
-    return compute_sub(first, second, par->base);
+    return compute_sub(first, second, par->base, par->ops);
 }
 
 char *my_add(char *first, char *second, char *base, char *ops)

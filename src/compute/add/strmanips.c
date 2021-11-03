@@ -45,7 +45,6 @@ char *clean_str(char *str, char *base, char *ops)
     int insert_neg = 0;
     char *new;
     int start = 0;
-    int len = my_strlen(str);
     char *null = malloc(2);
 
     null[0] = base[0];
@@ -54,10 +53,12 @@ char *clean_str(char *str, char *base, char *ops)
         start++;
         insert_neg = 1;
     }
-    while (str[start] && str[start] == base[0])
+    while (str[start] && str[start] == base[0]) {
         start++;
-    if (start == len)
+    }
+    if (my_nbr_cmp(str, "0", base) == 0) {
         return null;
+    }
     new = my_strdup(str + start);
     (insert_neg == 1) ? insert_at_beg(&new, ops[3], 1, 1) : 0;
     free(null);
@@ -70,5 +71,5 @@ int index_of(char c, char *str)
         if (str[i] == c)
             return i;
     }
-    return -1;
+    return 0;
 }
