@@ -49,6 +49,7 @@ char *eval_expr(char *str, char *base, char *ops)
     char *tmp;
 
     while (contain_any_of(str + 1, ops)) {
+        cleanex(&str, base, ops);
         tmp = str;
         str = prio(str, base, ops);
         free(tmp);

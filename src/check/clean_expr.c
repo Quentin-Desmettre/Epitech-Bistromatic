@@ -33,7 +33,8 @@ static int replace_negs(char **expr, char *base, char *ops, int i)
     char *tmp = *expr;
 
     new_ops[0] = (nb_neg % 2 == 0) ? (0) : (ops[3]);
-    if (i != 0 && contain(base, (*expr)[i - 1])) {
+    if (i != 0 && (contain(base, (*expr)[i - 1]) || (*expr)[i - 1] == ops[1])
+    ) {
         new_ops[0] = (nb_neg % 2 == 0) ? (ops[2]) : (ops[3]);
     }
     *expr = replace(*expr, i, op_len, new_ops);
