@@ -25,5 +25,7 @@ int contain_any_of(char const *str, char const *check);
 int contain_only(char const *str, char const *check);
 char *replace(char const *str, int start, int nb, char *new);
 void *my_memset(char *str, int c, int n);
+char *char_to_str(char c);
+void append_char(char **str, char c, int is_free);
 
 #endif

@@ -4,6 +4,8 @@
 ** File description:
 ** apeend_char
 */
+#include "stdlib.h"
+#include "../include/strmanip.h"
 
 char *char_to_str(char c)
 {

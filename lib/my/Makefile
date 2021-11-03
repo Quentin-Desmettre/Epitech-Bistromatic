@@ -54,7 +54,8 @@ STRMANIP = my_strcat.c              \
 	my_revstr.c \
 	contain.c \
 	replace_str.c \
-	my_memset.c
+	my_memset.c \
+	append_char.c
 
 OBJ = $(GRAPHICS:.c=.o) \
 	$(IOMANIP:.c=.o) \
