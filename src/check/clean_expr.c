@@ -25,7 +25,7 @@ static int_pair_t lens_to_nb(char const *expr, char const *ops, int i)
     return val;
 }
 
-static void replace_negs(char **expr, char *base, char *ops, int i)
+static int replace_negs(char **expr, char *base, char *ops, int i)
 {
     int nb_neg = lens_to_nb(*expr, ops, i).a;
     int op_len = lens_to_nb(*expr, ops, i).b;
@@ -38,9 +38,10 @@ static void replace_negs(char **expr, char *base, char *ops, int i)
     }
     *expr = replace(*expr, i, op_len, new_ops);
     free(tmp);
+    return 1;
 }
 
-static void remove_zeros(char **expr, char *base, int i)
+static int remove_zeros(char **expr, char *base, int i)
 {
     char *tmp;
 
@@ -49,6 +50,7 @@ static void remove_zeros(char **expr, char *base, int i)
         *expr = replace(*expr, i, 1, "");
         free(tmp);
     }
+    return 1;
 }
 
 static int is_rm_zero(char *expr, char *ops, int i)
@@ -56,7 +58,7 @@ static int is_rm_zero(char *expr, char *ops, int i)
     return i == 0 && ((expr[i] != ops[3]) && expr[i] != ops[0]);
 }
 
-void cleanex(char **expr, char *base, char *ops)
+int cleanex(char **expr, char *base, char *ops)
 {
     int shift = 0;
 
@@ -72,4 +74,5 @@ void cleanex(char **expr, char *base, char *ops)
             remove_zeros(expr, base, i + 1 - shift);
         }
     }
+    return 1;
 }

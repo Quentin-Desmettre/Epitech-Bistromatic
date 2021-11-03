@@ -8,42 +8,44 @@
 #include <stdlib.h>
 #include "bistromatic.h"
 
-void check_nb_args(int ac)
+int check_nb_args(int ac)
 {
     if (ac != 4) {
         my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_USAGE);
+        return 0;
     }
+    return 1;
 }
 
-void check_base(char const *base)
+int check_base(char const *base)
 {
     if (my_strlen(base) < 2) {
         my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_BASE);
+        return 0;
     }
+    return 1;
 }
 
-void check_ops(char const *ops)
+int check_ops(char const *ops)
 {
     if (my_strlen(ops) != 7) {
         my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_OPS);
+        return 0;
     }
+    return 1;
 }
 
-void check_help(int ac, char **av)
+int check_help(int ac, char **av)
 {
     if (ac == 2 && my_strcmp(av[1], "-h") == 0) {
         usage();
-        exit(EXIT_USAGE);
+        return 0;
     }
+    return 1;
 }
 
-void check_all(int ac, char **av)
+int check_all(int ac, char **av)
 {
-    check_help(ac, av);
-    check_nb_args(ac);
-    check_base(av[1]);
-    check_ops(av[2]);
+    return check_help(ac, av) && check_nb_args(ac) 
+    && check_base(av[1]) && check_ops(av[2]);
 }

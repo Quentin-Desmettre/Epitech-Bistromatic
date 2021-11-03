@@ -18,36 +18,37 @@ static int count_occurences(char const c, char const *str)
     return oc;
 }
 
-static void check_redundance(char const *str)
+static int check_redundance(char const *str)
 {
     for (int i = 0; str[i]; i++) {
         if (count_occurences(str[i], str) > 1) {
             my_putstr(SYNTAX_ERROR_MSG);
-            exit(EXIT_SYNTAX_ERROR);
+            return 0;
         }
     }
+    return 1;
 }
 
-void check_base_ops(char const *base, char const *ops)
+int check_base_ops(char const *base, char const *ops)
 {
     if (contain_any_of(base, ops)) {
         my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_SYNTAX_ERROR);
+        return 0;
     }
-    check_redundance(base);
-    check_redundance(ops);
+    return check_redundance(base) && check_redundance(ops);
 }
 
-void check_ops_place(char const *str, char const *ops)
+int check_ops_place(char const *str, char const *ops)
 {
     if ((contain(ops + 2, str[0]) && (str[0] != ops[2] && str[0] != ops[3])) ||
         contain(ops + 2, str[my_strlen(str) - 1])) {
         my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_SYNTAX_ERROR);
+        return 0;
     }
+    return 1;
 }
 
-void check_basic(char const *str, char const *base, char const *ops)
+int check_basic(char const *str, char const *base, char const *ops)
 {
     char base_ops[my_strlen(base) + my_strlen(ops) + 1];
 
@@ -55,6 +56,7 @@ void check_basic(char const *str, char const *base, char const *ops)
     my_strcat(base_ops, ops);
     if (my_strlen(str) == 0 || !contain_only(str, base_ops)) {
         my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_SYNTAX_ERROR);
+        return 0;
     }
+    return 1;
 }

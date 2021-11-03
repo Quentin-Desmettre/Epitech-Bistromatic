@@ -27,16 +27,16 @@ static char *get_expr(int const read_size)
 
     if (read_size <= 0) {
         my_putstr(SYNTAX_ERROR_MSG);
-        exit(EXIT_SIZE_NEG);
+        return 0;
     }
     expr = malloc(sizeof(char) * (read_size + 1));
     if (expr == NULL) {
         my_putstr(ERROR_MSG);
-        exit(EXIT_MALLOC);
+        return 0;
     }
     if (read(0, expr, read_size) != read_size) {
-        my_putstr(ERROR_MSG);
-        exit(EXIT_READ);
+        my_putstr(SYNTAX_ERROR_MSG);
+        return 0;
     }
     expr[read_size] = '\0';
     return expr;
@@ -47,9 +47,12 @@ int bistromatic(int ac, char **av)
     int size = 0;
     char *expr;
 
-    check_all(ac, av);
+    if (!check_all(ac, av))
+        return 84;
     size = my_getnbr(av[3]);
     expr = get_expr(size);
+    if (!expr)
+        return 84;
     check_expr(expr, av[1], av[2]);
     cleanex(&expr, av[1], av[2]);
     expr = (eval_expr(expr, av[1], av[2]));
