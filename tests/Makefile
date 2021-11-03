@@ -7,17 +7,14 @@
 
 SRC = test_check.c \
 	test_check_expr.c \
-	test_check_expr_others.c
+	test_check_expr_others.c \
+	test_mul.c
 
 FLAGS = -c -g -Wall -Wextra
 
 INCLUDE = ../include/
 
 LIB = ../lib/my/
-
-SRC = test_check.c \
-	test_check_expr.c \
-	test_check_expr_others.c
 
 all:
 	gcc $(FLAGS) -I $(INCLUDE) $(SRC) -L $(LIB) -lmy --coverage -lcriterion
