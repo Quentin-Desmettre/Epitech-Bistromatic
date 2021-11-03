@@ -9,6 +9,15 @@
 #include "bistromatic.h"
 #include "div.h"
 
+char *char_to_str(char c)
+{
+    char *result = malloc(2);
+
+    result[0] = c;
+    result[1] = '\0';
+    return (result);
+}
+
 void append_char(char **str, char c, int is_free)
 {
     char *tmp = *str;
@@ -31,8 +40,8 @@ void search_who_is_upper_n(char **ten_n, char **ten_n_b, char *r,
     int len = my_strlen(*ten_n_b);
 
     while (my_nbr_cmp(tmp_n, r, par->base) <= 0) {
-        append_char(&tmp, '0', 1);
-        append_char(&tmp_n, '0', 1);
+        append_char(&tmp, par->base[0], 1);
+        append_char(&tmp_n, par->base[0], 1);
     }
     len = my_strlen(tmp_n);
     if (len > 1)
@@ -48,14 +57,16 @@ void search_who_is_upper_n(char **ten_n, char **ten_n_b, char *r,
 
 char *search_who_is_upper_c(char *ten_n_b, char *r, int *c, expr_params_t *par)
 {
-    char *c_char;
+    char *c_char = my_strdup("For free");
     char *ten_n_bc = NULL;
 
     ten_n_bc = my_strdup(ten_n_b);
     for (int i = 2; my_nbr_cmp(ten_n_bc, r, par->base) <= 0; i++) {
         free(ten_n_bc);
+        free(c_char);
         int_to_str(i, &c_char);
         ten_n_bc = infin_mul(ten_n_b, c_char, par->base, par->ops);
+        free(c_char);
         int_to_str(i - 1, &c_char);
     }
     *c = my_getnbr(c_char);
@@ -77,9 +88,9 @@ void replace_add(char **q, char *ten_n, int c, expr_params_t *par)
     free(ten_n_c);
 }
 
-char *infin_div(char *a, char *b, char *base, char *ops)
+char *my_div(char *a, char *b, char *base, char *ops)
 {
-    char *q = my_strdup("0");
+    char *q = char_to_str(base[0]);
     char *r = my_strdup(a);
     char *ten_n_b = NULL;
     char *ten_n = NULL;
@@ -87,10 +98,10 @@ char *infin_div(char *a, char *b, char *base, char *ops)
     int c = 1;
     expr_params_t par = {0, base, ops};
 
-    error_inf_div(b);
-    while ((my_nbr_cmp(r, b, base) >= 0) && r[0] != '-') {
+    error_inf_div(b, base);
+    while ((my_nbr_cmp(r, b, base) >= 0) && r[0] != ops[3]) {
         ten_n_b = my_strdup(b);
-        ten_n = my_strdup("1");
+        ten_n = char_to_str(base[1]);
         search_who_is_upper_n(&ten_n, &ten_n_b, r, &par);
         ten_n_bc = search_who_is_upper_c(ten_n_b, r, &c, &par);
         replace_add(&q, ten_n, c, &par);
@@ -99,4 +110,23 @@ char *infin_div(char *a, char *b, char *base, char *ops)
     }
     free(r);
     return (q);
+}
+
+char *infin_div(char *a, char *b, char *base, char *ops)
+{
+    char *result;
+
+    if (a[0] == ops[3] && b[0] == ops[3])
+        result = my_div(a + 1, b + 1, base, ops);
+    if (a[0] != ops[3] && b[0] != ops[3])
+        result = my_div(a, b, base, ops);
+    if (a[0] == ops[3] && b[0] != ops[3]) {
+        result = my_div(a + 1, b, base, ops);
+        insert_at_beg(&result, ops[3], 1, 1);
+    }
+    if (a[0] != ops[3] && b[0] == ops[3]) {
+        result = my_div(a, b + 1, base, ops);
+        insert_at_beg(&result, ops[3], 1, 1);
+    }
+    return (result);
 }
