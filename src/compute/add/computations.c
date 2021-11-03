@@ -52,8 +52,8 @@ static char *compute_sub(char *first, char *second, char *base)
     }
     for (int i = 0; i < len + 2; i++)
         result[i] = base[result[i]];
-    free(first);
-    free(second);
+    //free(first);
+    //free(second);
     return result;
 }
 
@@ -98,7 +98,7 @@ char *my_add(char *first, char *second, char *base, char *ops)
     }
     for (int i = 0; i < len + 1; i++)
         result[i] = base[result[i]];
-    free(first);
-    free(second);
+    //free(first);
+    //free(second);
     return result;
 }
