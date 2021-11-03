@@ -61,8 +61,7 @@ char *my_mul(char *fir, char *sec, char *base, char *ops)
 
 char *infin_mul(char *fir, char *sec, char *base, char *ops)
 {
-    int len = my_strlen(fir) + my_strlen(sec) + 2;
-    char *result = malloc(len + 1);
+    char *result;
 
     if (fir[0] == ops[3] && sec[0] == ops[3])
         result = my_mul(fir + 1, sec + 1, base, ops);

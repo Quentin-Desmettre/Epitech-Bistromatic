@@ -20,9 +20,9 @@ void free_all(char *ten_n_b, char *ten_n, char *ten_n_bc)
     free(ten_n_b);
 }
 
-void error_inf_div(char *b)
+void error_inf_div(char *b, char *base)
 {
-    if (my_strcmp(b, "0") == 0) {
+    if (b[0] == base[0]) {
         write(2, "error", 5);
         exit(84);
     }
