@@ -37,24 +37,37 @@ static void put_same_length(char **first, char **second, char *base, char *ops)
     }
 }
 
+char *reput_str_good(char **result, int len, char *base, char *ops)
+{
+    for (int i = 0; i < len + 1; i++)
+        (*result)[i] = base[(int) (*result)[i]];
+    re_alloc(result, clean_str(*result, base, ops), 1);
+    return *result;
+}
+
 static char *compute_sub(char *first, char *second, char *base, char *ops)
 {
     int len = my_strlen(first);
+    int index_of_first = 0;
     char *result = malloc(sizeof(char) * (len + 2));
 
     init_with(result, 0, len + 2);
     for (int i = len - 1; i >= 0; i--) {
-        result[i + 1] += index_of(first[i], base) - index_of(second[i], base);
-        if (result[i + 1] < 0 && i) {
+        if (first[i] < 0) {
             first[i - 1]--;
+            first[i] = base[my_strlen(base) + first[i]];
+        }
+        result[i + 1] += index_of(first[i], base) - index_of(second[i], base);
+        if (result[i + 1] < 0) {
+            index_of_first = index_of(first[i - 1], base);
+            if (index_of_first == 0)
+                first[i - 1] = -1;
+            else
+                first[i - 1] = base[index_of_first - 1]; 
             result[i + 1] += my_strlen(base);
         }
     }
-    for (int i = 0; i < len + 1; i++) {
-        result[i] = base[(int) result[i]];
-    }
-    re_alloc(&result, clean_str(result, base, ops), 1);
-    return result;
+    return reput_str_good(&result, len, base, ops);    
 }
 
 char *my_sub(char *first, char *second, int is_rec, expr_params_t *par)

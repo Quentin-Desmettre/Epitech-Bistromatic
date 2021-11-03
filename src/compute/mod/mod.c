@@ -30,6 +30,8 @@ char *my_mod(char *a, char *b, char *base, char *ops)
         free_all(ten_n_b, ten_n, ten_n_bc);
     }
     free(q);
+    if (r[0] == 0)
+        r[0] += 48;
     return (r);
 }
 

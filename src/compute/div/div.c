@@ -8,6 +8,40 @@
 #include "unistd.h"
 #include "bistromatic.h"
 #include "div.h"
+#define PRECISION 15
+
+char *my_div(char *, char *, char *, char *, int);
+
+void append(char **str, char *buf, int is_free)
+{
+    char *tmp = *str;
+    int len = my_strlen(tmp) + my_strlen(buf);
+    char *new = malloc(sizeof(char) * (len + 1));
+
+    my_strcpy(new, tmp);
+    my_strcat(new, buf);
+    new[len] = '\0';
+    if (is_free)
+        free(tmp);
+    *str = new;
+}
+
+void compute_decimal_part(char **result, char *r, char *diviseur, int precision, char *base, char *ops)
+{
+    char *tmp;
+    char *mod = my_mod(r, diviseur, base, ops);
+
+    if (mod[0] != base[0])
+        append_char(result, '.', 1);
+    for (int i = 0; i < precision && mod[0] != base[0]; i++) {
+        append_char(&r, base[0], 1);
+        tmp = my_div(r, diviseur, base, ops, 0);
+        mod = my_mod(r, diviseur, base, ops);
+        append(result, tmp, 1);
+        re_alloc(&r, mod, 1);
+        free(tmp);    
+    }
+}
 
 void search_who_is_upper_n(char **ten_n, char **ten_n_b, char *r,
     expr_params_t *par)
@@ -65,7 +99,7 @@ void replace_add(char **q, char *ten_n, int c, expr_params_t *par)
     free(ten_n_c);
 }
 
-char *my_div(char *a, char *b, char *base, char *ops)
+char *my_div(char *a, char *b, char *base, char *ops, int decimal)
 {
     char *q = char_to_str(base[0]);
     char *r = my_strdup(a);
@@ -85,7 +119,9 @@ char *my_div(char *a, char *b, char *base, char *ops)
         replace_sub(&r, ten_n_bc, &par);
         free_all(ten_n_b, ten_n, ten_n_bc);
     }
-    free(r);
+    if (decimal)
+        compute_decimal_part(&q, r, b, PRECISION, base, ops);
+    //free(r);
     return (q);
 }
 
@@ -94,15 +130,15 @@ char *infin_div(char *a, char *b, char *base, char *ops)
     char *result;
 
     if (a[0] == ops[3] && b[0] == ops[3])
-        result = my_div(a + 1, b + 1, base, ops);
+        result = my_div(a + 1, b + 1, base, ops, 1);
     if (a[0] != ops[3] && b[0] != ops[3])
-        result = my_div(a, b, base, ops);
+        result = my_div(a, b, base, ops, 1);
     if (a[0] == ops[3] && b[0] != ops[3]) {
-        result = my_div(a + 1, b, base, ops);
+        result = my_div(a + 1, b, base, ops, 1);
         insert_at_beg(&result, ops[3], 1, 1);
     }
     if (a[0] != ops[3] && b[0] == ops[3]) {
-        result = my_div(a, b + 1, base, ops);
+        result = my_div(a, b + 1, base, ops, 1);
         insert_at_beg(&result, ops[3], 1, 1);
     }
     return (result);

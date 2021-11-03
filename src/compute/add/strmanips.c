@@ -71,5 +71,5 @@ int index_of(char c, char *str)
         if (str[i] == c)
             return i;
     }
-    return 0;
+    return -1;
 }

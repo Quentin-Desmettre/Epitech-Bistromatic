@@ -23,7 +23,7 @@ void usage(void)
 
 static char *get_expr(int const read_size)
 {
-    char *expr;
+    char *expr = 0;
 
     if (read_size <= 0) {
         my_putstr(SYNTAX_ERROR_MSG);

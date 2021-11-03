@@ -40,8 +40,8 @@ int check_base_ops(char const *base, char const *ops)
 
 int check_ops_place(char const *str, char const *ops)
 {
-    if ((contain(ops + 2, str[0]) && (str[0] != ops[2] && str[0] != ops[3])) ||
-        contain(ops + 2, str[my_strlen(str) - 1])) {
+    if (contain(ops + 4, str[0]) ||
+    contain(ops + 2, str[my_strlen(str) - 1])) {
         my_putstr(SYNTAX_ERROR_MSG);
         return 0;
     }

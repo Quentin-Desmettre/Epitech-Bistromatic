@@ -25,6 +25,7 @@
     #define EXIT_SUCCESS 0
     #define SYNTAX_ERROR_MSG "syntax error\n"
     #define ERROR_MSG "error\n"
+    #include <stdio.h>
 
 typedef struct expr_params {
     char *expr;

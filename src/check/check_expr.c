@@ -40,11 +40,9 @@ int check_double_paren(char const *str, char const *ops, int i)
 
 int check_double_ops(char const *str, char const *ops, int i)
 {
-    if (contain(ops + 2, str[i]) && contain(ops + 2, str[i + 1])) {
-        if (str[i + 1] != ops[2] && str[i + 1] != ops[3]) {
-            my_putstr(SYNTAX_ERROR_MSG);
-            return 0;
-        }
+    if (contain(ops + 2, str[i]) && contain(ops + 4, str[i + 1])) {
+        my_putstr(SYNTAX_ERROR_MSG);
+        return 0;
     }
     return 1;
 }
