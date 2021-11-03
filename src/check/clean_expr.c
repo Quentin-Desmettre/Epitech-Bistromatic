@@ -8,7 +8,7 @@
 #include "bistromatic.h"
 #include <stdlib.h>
 
-static int_pair_t lens_to_nb(char const *expr, char const *ops, int i)
+int_pair_t lens_to_nb(char const *expr, char const *ops, int i)
 {
     int neg = 0;
     int nb = 0;
@@ -25,7 +25,7 @@ static int_pair_t lens_to_nb(char const *expr, char const *ops, int i)
     return val;
 }
 
-static int replace_negs(char **expr, char *base, char *ops, int i)
+int replace_negs(char **expr, char *base, char *ops, int i)
 {
     int nb_neg = lens_to_nb(*expr, ops, i).a;
     int op_len = lens_to_nb(*expr, ops, i).b;
@@ -42,7 +42,7 @@ static int replace_negs(char **expr, char *base, char *ops, int i)
     return 1;
 }
 
-static int remove_zeros(char **expr, char *base, int i)
+int remove_zeros(char **expr, char *base, int i)
 {
     char *tmp;
 
@@ -54,7 +54,7 @@ static int remove_zeros(char **expr, char *base, int i)
     return 1;
 }
 
-static int is_rm_zero(char *expr, char *ops, int i)
+int is_rm_zero(char *expr, char *ops, int i)
 {
     return i == 0 && ((expr[i] != ops[3]) && expr[i] != ops[0]);
 }

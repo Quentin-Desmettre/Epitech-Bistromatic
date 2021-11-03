@@ -17,14 +17,14 @@ all:
 tests_run:
 	make -C ./lib/my/ && make -C ./lib/my/ clean
 	make -C ./src/ tests
+	make -C ./tests/
 	gcc -o unit_tests *.o $(LIBS) --coverage -lcriterion
 	./unit_tests
 
 clean:
 	rm -f *.o
 	make -C ./src/ clean
-	find . -name *.gcno -delete
-	find . -name *.gcda -delete
+	make -C ./tests/ clean
 
 fclean: clean
 	rm -f $(NAME)

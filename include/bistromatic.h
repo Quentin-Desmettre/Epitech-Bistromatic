@@ -42,5 +42,7 @@ typedef struct expr_params {
 typedef unsigned long long ull;
 
 void usage(void);
+int bistromatic(int ac, char **av);
+void redirect_all_stdout(void);
 
 #endif

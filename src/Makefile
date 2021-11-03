@@ -8,8 +8,6 @@
 SRC = main.c \
 		bistromatic.c
 
-TESTS = ../tests/test_check.c
-
 OBJ = $(SRC:.c=.o)
 
 FLAGS = -c -g -Wall -Wextra
