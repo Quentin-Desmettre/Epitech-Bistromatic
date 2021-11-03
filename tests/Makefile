@@ -8,7 +8,8 @@
 SRC = test_check.c \
 	test_check_expr.c \
 	test_check_expr_others.c \
-	test_mul.c
+	test_mul.c \
+	test_check_expr_others_2.c
 
 FLAGS = -c -g -Wall -Wextra
 
