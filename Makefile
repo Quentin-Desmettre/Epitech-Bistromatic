@@ -30,5 +30,6 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f unit_tests
 
 re: fclean all
