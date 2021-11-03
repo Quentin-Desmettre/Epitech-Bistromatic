@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2021
-** MAIN
+** infin_mul
 ** File description:
-** toto: Description
+** Infinite mul
 */
 
 #include <stdlib.h>
