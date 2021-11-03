@@ -4,8 +4,8 @@
 ** File description:
 ** Bistro
 */
-#include "stdlib.h"
-#include "unistd.h"
+#include <stdlib.h>
+#include <unistd.h>
 #include "bistromatic.h"
 
 void replace_sub(char **r, char *ten_n_bc, expr_params_t *par)
@@ -23,6 +23,7 @@ void free_all(char *ten_n_b, char *ten_n, char *ten_n_bc)
 void error_inf_div(char *b, char *base)
 {
     if (b[0] == base[0]) {
+        printf("string :%s\n", b);
         write(2, "error", 5);
         exit(84);
     }

@@ -6,7 +6,6 @@
 */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "bistromatic.h"
 
 void re_alloc(char **str, char *new, int is_free)

@@ -4,8 +4,8 @@
 ** File description:
 ** div
 */
-#include "stdlib.h"
-#include "unistd.h"
+#include <stdlib.h>
+#include <unistd.h>
 #include "bistromatic.h"
 #include "div.h"
 #define PRECISION 15
@@ -86,9 +86,9 @@ char *my_div(char *a, char *b, char *base, char *ops, int decimal)
         replace_sub(&r, ten_n_bc, &par);
         free_all(ten_n_b, ten_n, ten_n_bc);
     }
-    if (decimal)
+    //if (decimal)
         //compute_decimal_part(&q, r, b, PRECISION, base, ops);
-        free(r);
+    free(r);
     return (q);
 }
 

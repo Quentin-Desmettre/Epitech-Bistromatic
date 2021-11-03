@@ -4,8 +4,8 @@
 ** File description:
 ** div
 */
-#include "stdlib.h"
-#include "unistd.h"
+#include <stdlib.h>
+#include <unistd.h>
 #include "bistromatic.h"
 #include "div.h"
 
@@ -30,8 +30,12 @@ char *my_mod(char *a, char *b, char *base, char *ops)
         free_all(ten_n_b, ten_n, ten_n_bc);
     }
     free(q);
-    if (r[0] == 0)
-        r[0] += 48;
+    if (r[0] == 0) {
+        free(r);
+        r = malloc(2);
+        r[0] = base[0];
+        r[1] = 0;
+    }
     return (r);
 }
 
