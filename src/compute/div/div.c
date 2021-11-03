@@ -9,29 +9,6 @@
 #include "bistromatic.h"
 #include "div.h"
 
-char *char_to_str(char c)
-{
-    char *result = malloc(2);
-
-    result[0] = c;
-    result[1] = '\0';
-    return (result);
-}
-
-void append_char(char **str, char c, int is_free)
-{
-    char *tmp = *str;
-    int len = my_strlen(tmp) + 1;
-    char *new = malloc(sizeof(char) * (len + 1));
-
-    my_strcpy(new, tmp);
-    new[len - 1] = c;
-    new[len] = '\0';
-    if (is_free)
-        free(tmp);
-    *str = new;
-}
-
 void search_who_is_upper_n(char **ten_n, char **ten_n_b, char *r,
     expr_params_t *par)
 {

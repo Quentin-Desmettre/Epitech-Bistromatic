@@ -46,6 +46,6 @@ int check_help(int ac, char **av)
 
 int check_all(int ac, char **av)
 {
-    return check_help(ac, av) && check_nb_args(ac) 
+    return check_help(ac, av) && check_nb_args(ac)
     && check_base(av[1]) && check_ops(av[2]);
 }

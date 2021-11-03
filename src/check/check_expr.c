@@ -73,7 +73,7 @@ static int check_ops_paren(char const *str, char const *base,
 
 int check_expr(char const *str, char const *base, char const *ops)
 {
-    if (!(check_base_ops(base, ops) && 
+    if (!(check_base_ops(base, ops) &&
     check_basic(str, base, ops) && check_paren(str, ops) &&
     check_ops_place(str, ops)))
         return 0;
