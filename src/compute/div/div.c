@@ -10,39 +10,6 @@
 #include "div.h"
 #define PRECISION 15
 
-char *my_div(char *, char *, char *, char *, int);
-
-void append(char **str, char *buf, int is_free)
-{
-    char *tmp = *str;
-    int len = my_strlen(tmp) + my_strlen(buf);
-    char *new = malloc(sizeof(char) * (len + 1));
-
-    my_strcpy(new, tmp);
-    my_strcat(new, buf);
-    new[len] = '\0';
-    if (is_free)
-        free(tmp);
-    *str = new;
-}
-
-void compute_decimal_part(char **result, char *r, char *diviseur, int precision, char *base, char *ops)
-{
-    char *tmp;
-    char *mod = my_mod(r, diviseur, base, ops);
-
-    if (mod[0] != base[0])
-        append_char(result, '.', 1);
-    for (int i = 0; i < precision && mod[0] != base[0]; i++) {
-        append_char(&r, base[0], 1);
-        tmp = my_div(r, diviseur, base, ops, 0);
-        mod = my_mod(r, diviseur, base, ops);
-        append(result, tmp, 1);
-        re_alloc(&r, mod, 1);
-        free(tmp);    
-    }
-}
-
 void search_who_is_upper_n(char **ten_n, char **ten_n_b, char *r,
     expr_params_t *par)
 {
@@ -120,8 +87,8 @@ char *my_div(char *a, char *b, char *base, char *ops, int decimal)
         free_all(ten_n_b, ten_n, ten_n_bc);
     }
     if (decimal)
-        compute_decimal_part(&q, r, b, PRECISION, base, ops);
-    //free(r);
+        //compute_decimal_part(&q, r, b, PRECISION, base, ops);
+        free(r);
     return (q);
 }
 
