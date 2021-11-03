@@ -53,7 +53,8 @@ int bistromatic(int ac, char **av)
     expr = get_expr(size);
     if (!expr)
         return 84;
-    check_expr(expr, av[1], av[2]);
+    if (!check_expr(expr, av[1], av[2]))
+        return 84;
     cleanex(&expr, av[1], av[2]);
     expr = (eval_expr(expr, av[1], av[2]));
     my_putstr(expr);

@@ -35,6 +35,7 @@ static int check_double_paren(char const *str, char const *ops, int i)
         my_putstr(SYNTAX_ERROR_MSG);
         return 0;
     }
+    return 1;
 }
 
 static int check_double_ops(char const *str, char const *ops, int i)

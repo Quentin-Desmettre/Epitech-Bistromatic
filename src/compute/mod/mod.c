@@ -37,17 +37,17 @@ char *infin_mod(char *a, char *b, char *base, char *ops)
 {
     char *result;
 
-    if (a[0] == ops[3] && b[0] == ops[3])
+    if (a[0] == ops[3] && b[0] == ops[3]) {
         result = my_mod(a + 1, b + 1, base, ops);
+        insert_at_beg(&result, ops[3], 1, 1);
+    }
     if (a[0] != ops[3] && b[0] != ops[3])
         result = my_mod(a, b, base, ops);
     if (a[0] == ops[3] && b[0] != ops[3]) {
         result = my_mod(a + 1, b, base, ops);
         insert_at_beg(&result, ops[3], 1, 1);
     }
-    if (a[0] != ops[3] && b[0] == ops[3]) {
+    if (a[0] != ops[3] && b[0] == ops[3])
         result = my_mod(a, b + 1, base, ops);
-        insert_at_beg(&result, ops[3], 1, 1);
-    }
     return (result);
 }
