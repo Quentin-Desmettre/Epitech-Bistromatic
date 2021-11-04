@@ -35,3 +35,12 @@ Test(prio, calc_only_1time)
     calcul = "()";
     cr_assert_str_eq(prio(calcul, base, ops), "");
 }
+
+Test(eval_expr, calc_all)
+{
+    char *str = my_strdup("(5+5*5+(5*8+1*5))");
+    char *base = "0123456789";
+    char *ops = "()+-*/%";
+
+    cr_assert_str_eq(eval_expr(str, base, ops), "75");
+}
