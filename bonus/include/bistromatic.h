@@ -26,6 +26,7 @@
     #define SYNTAX_ERROR_MSG "syntax error\n"
     #define ERROR_MSG "error\n"
     #include <stdio.h>
+    #define PRECISION 100000
 
 typedef struct expr_params {
     char *expr;
@@ -39,6 +40,10 @@ typedef struct expr_params {
     #include "infin.h"
     #include "lib/iomanip.h"
     #include "lib/strmanip.h"
+    #include "div.h"
+    #include "exp.h"
+    #include "decimals.h"
+    #define ABS(x) ((x) < 0) ? (-(x)) : (x)
 
 typedef unsigned long long ull;
 

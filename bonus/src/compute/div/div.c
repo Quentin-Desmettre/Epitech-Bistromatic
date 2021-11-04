@@ -65,8 +65,12 @@ void replace_add(char **q, char *ten_n, int c, expr_params_t *par)
     free(ten_n_c);
 }
 
-char *my_div(char *a, char *b, expr_params_t *par)
+char *my_div(char *a, char *b, expr_params_t *par, int decimal)
 {
+    a = my_strdup(a);
+    b = my_strdup(b);
+    adapt_decimals(&a, &b, par->base, par->ops);
+
     char *q = char_to_str(par->base[0]);
     char *r = my_strdup(a);
     char *ten_n_b = NULL;
@@ -84,6 +88,8 @@ char *my_div(char *a, char *b, expr_params_t *par)
         replace_sub(&r, ten_n_bc, par);
         free_all(ten_n_b, ten_n, ten_n_bc);
     }
+    if (decimal && r[0] != par->base[0])
+        compute_decimal_part(&q, r, b, par);
     free(r);
     return (q);
 }
@@ -94,15 +100,15 @@ char *infin_div(char *a, char *b, char *base, char *ops)
     expr_params_t par = {0, base, ops};
 
     if (a[0] == ops[3] && b[0] == ops[3])
-        result = my_div(a + 1, b + 1, &par);
+        result = my_div(a + 1, b + 1, &par, 1);
     if (a[0] != ops[3] && b[0] != ops[3])
-        result = my_div(a, b, &par);
+        result = my_div(a, b, &par, 1);
     if (a[0] == ops[3] && b[0] != ops[3]) {
-        result = my_div(a + 1, b, &par);
+        result = my_div(a + 1, b, &par, 1);
         insert_at_beg(&result, ops[3], 1, 1);
     }
     if (a[0] != ops[3] && b[0] == ops[3]) {
-        result = my_div(a, b + 1, &par);
+        result = my_div(a, b + 1, &par, 1);
         insert_at_beg(&result, ops[3], 1, 1);
     }
     return (result);

@@ -5,7 +5,8 @@
 ## makefile for computations
 ##
 
-SRC = doop.c
+SRC = doop.c \
+	decimals.c
 
 OBJ = $(SRC:.c=.o)
 

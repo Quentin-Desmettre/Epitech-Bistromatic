@@ -16,5 +16,6 @@ char *infin_div(char *a, char *b, char *base, char *ops);
 char *infin_mul(char *fir, char *sec, char *base, char *ops);
 char *infin_mod(char *a, char *b, char *base, char *ops);
 char *my_mod(char *a, char *b, char *base, char *ops);
+char *my_div(char *a, char *b, expr_params_t *par, int decimal);
 
 #endif

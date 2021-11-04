@@ -47,12 +47,14 @@ static char *prio(char *calcul, char *base, char *ops)
 char *eval_expr(char *str, char *base, char *ops)
 {
     char *tmp;
+    char *ops_without_dot = replace(ops, 8, 1, "");
 
-    while (contain_any_of(str + 1, ops)) {
+    while (contain_any_of(str + 1, ops_without_dot)) {
         cleanex(&str, base, ops);
         tmp = str;
         str = prio(str, base, ops);
         free(tmp);
     }
+    free(ops_without_dot);
     return str;
 }

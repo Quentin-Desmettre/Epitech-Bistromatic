@@ -8,7 +8,7 @@
 #include "bistromatic.h"
 #include <stdlib.h>
 
-static void put_same_length(char **first, char **second, char *base, char *ops)
+void put_same_length(char **first, char **second, char *base, char *ops)
 {
     int len_f;
     int len_s;

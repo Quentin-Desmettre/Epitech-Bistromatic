@@ -14,7 +14,7 @@ static int len_to_prev(char *str, int start, char *base, char *ops)
     int len = 0;
 
     while (i >= 0) {
-        if (contain(base, str[i]))
+        if (contain(base, str[i]) || str[i] == ops[8])
             len++;
         else if (str[i] == ops[3] && (!i || contain(ops, str[i - 1])))
             len++;
@@ -31,7 +31,7 @@ static int len_to_next(char *str, int start, char *base, char *ops)
     int len = 0;
 
     while (1) {
-        if (str[i] && contain(base, str[i]))
+        if ((str[i] && contain(base, str[i])) || str[i] == ops[8])
             len++;
         else if (str[i] == ops[3] && (!i || contain(ops, str[i - 1])))
             len++;
@@ -48,16 +48,10 @@ char *get_next_number(char *str, int start, char *base, char *ops)
     char *num = malloc(sizeof(char) * len + 1);
     int i = start + 1;
 
-    while (1) {
-        if (str[i] && contain(base, str[i]))
-            num[i - start - 1] = str[i];
-        else if (str[i] == ops[3] && (!i || contain(ops, str[i - 1])))
-            num[i - start - 1] = str[i];
-        else
-            break;
-        i++;
+    for (int j = 0; j < len; j++) {
+        num[j] = str[i + j];
     }
-    num[len] = '\0';
+    num[len] = 0;
     return num;
 }
 
@@ -66,19 +60,11 @@ char *get_prev_number(char *str, int start, char *base, char *ops)
     int len = len_to_prev(str, start, base, ops);
     char *num = malloc(sizeof(char) * len + 1);
     int i = start - 1;
-    int j = 0;
 
-    while (i >= 0) {
-        if (contain(base, str[i]))
-            num[j] = str[i];
-        else if (str[i] == ops[3] && (i == 0 || contain(ops, str[i - 1])))
-            num[j] = str[i];
-        else
-            break;
-        i--;
-        j++;
+    for (int j = 0; j < len; j++) {
+        num[j] = str[i - j];
     }
-    num[len] = '\0';
+    num[len] = 0;
     my_revstr(num);
     return num;
 }

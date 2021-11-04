@@ -15,5 +15,6 @@ char *clean_str(char *str, char *base, char *ops);
 int index_of(char c, char *str);
 int int_to_str(int nb, char **str);
 void re_alloc(char **str, char *new, int is_free);
+void put_same_length(char **first, char **second, char *base, char *ops);
 
 #endif

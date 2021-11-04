@@ -15,6 +15,7 @@ void clean_dot_at(char **str, int i, char *base, char *ops)
 
     my_revstr(decimals);
     cleanex(&decimals, base, ops);
+    my_revstr(decimals);
     if (decimals_len == 0 || (decimals_len == 1 && decimals[0] == base[0]))
         re_alloc(str, replace(*str, i, decimals_len + 1, ""), 1);
     else

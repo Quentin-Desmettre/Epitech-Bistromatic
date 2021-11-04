@@ -28,5 +28,6 @@ void *my_memset(char *str, int c, int n);
 char *char_to_str(char c);
 void append_char(char **str, char c, int is_free);
 int strlen_free(char *str);
+void append(char **str, char *buf, int is_free);
 
 #endif
