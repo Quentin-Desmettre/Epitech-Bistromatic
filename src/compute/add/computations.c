@@ -8,7 +8,7 @@
 #include "bistromatic.h"
 #include <stdlib.h>
 
-static void put_same_length(char **first, char **second, char *base, char *ops)
+void put_same_length(char **first, char **second, char *base, char *ops)
 {
     int len_f;
     int len_s;
@@ -37,7 +37,7 @@ char *reput_str_good(char **result, int len, char *base, char *ops)
     return *result;
 }
 
-static char *compute_sub(char *first, char *second, char *base, char *ops)
+char *compute_sub(char *first, char *second, char *base, char *ops)
 {
     int len = my_strlen(first);
     int index_of_first = 0;

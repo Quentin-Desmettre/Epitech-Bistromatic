@@ -16,5 +16,7 @@ int index_of(char c, char *str);
 int int_to_str(int nb, char **str);
 void re_alloc(char **str, char *new, int is_free);
 void init_with_int(unsigned long long *array, int what, int len);
+void put_same_length(char **first, char **second, char *base, char *ops);
+char *reput_str_good(char **result, int len, char *base, char *ops);
 
 #endif
