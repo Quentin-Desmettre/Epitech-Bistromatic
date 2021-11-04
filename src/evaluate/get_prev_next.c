@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "lib/strmanip.h"
 
-static int len_to_prev(char *str, int start, char *base, char *ops)
+int len_to_prev(char *str, int start, char *base, char *ops)
 {
     int i = start - 1;
     int len = 0;
@@ -25,7 +25,7 @@ static int len_to_prev(char *str, int start, char *base, char *ops)
     return len;
 }
 
-static int len_to_next(char *str, int start, char *base, char *ops)
+int len_to_next(char *str, int start, char *base, char *ops)
 {
     int i = start + 1;
     int len = 0;
