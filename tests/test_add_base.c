@@ -21,7 +21,7 @@ Test (infin_add, basic_add_both_neg_base, .init = redirect_all_stdout)
 
 Test (infin_add, basic_add_left_neg_base, .init = redirect_all_stdout)
 {
-    cr_assert_str_eq(infin_add("-t", "t", "pouet", "()+-*/%"), "p");
+    cr_assert_str_eq(infin_add("-t", "t", "pouet", "()+-*/%"), "");
 }
 
 Test (infin_add, add_carry_test_base, .init = redirect_all_stdout)

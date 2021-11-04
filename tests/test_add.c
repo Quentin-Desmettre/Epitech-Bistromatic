@@ -21,12 +21,12 @@ Test (infin_add, basic_add_both_neg, .init = redirect_all_stdout)
 
 Test (infin_add, basic_add_left_neg, .init = redirect_all_stdout)
 {
-    cr_assert_str_eq(infin_add("-5", "5", "0123456789", "()+-*/%"), "0");
+    cr_assert_str_eq(infin_add("-5", "5", "0123456789", "()+-*/%"), "");
 }
 
 Test (infin_add, basic_add_right_neg, .init = redirect_all_stdout)
 {
-    cr_assert_str_eq(infin_add("5", "-5", "0123456789", "()+-*/%"), "0");
+    cr_assert_str_eq(infin_add("5", "-5", "0123456789", "()+-*/%"), "");
 }
 
 Test (infin_add, basic_add_two, .init = redirect_all_stdout)

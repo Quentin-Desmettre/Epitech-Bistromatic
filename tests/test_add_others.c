@@ -17,7 +17,7 @@ Test (infin_add, add_carry_test, .init = redirect_all_stdout)
 
 Test (infin_add, add_zero_test, .init = redirect_all_stdout)
 {
-    cr_assert_str_eq(infin_add("0", "0", "0123456789", "()+-*/%"), "0");
+    cr_assert_str_eq(infin_add("0", "0", "0123456789", "()+-*/%"), "");
 }
 
 Test (infin_add, add_big, .init = redirect_all_stdout)

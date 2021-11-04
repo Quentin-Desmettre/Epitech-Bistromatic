@@ -17,7 +17,7 @@ Test (infin_mul, mul_carry_test, .init = redirect_all_stdout)
 
 Test (infin_mul, mul_zero_test, .init = redirect_all_stdout)
 {
-    cr_assert_str_eq(infin_mul("0", "0", "0123456789", "()+-*/%"), "0");
+    cr_assert_str_eq(infin_mul("0", "0", "0123456789", "()+-*/%"), "");
 }
 
 Test (infin_mul, mul_big, .init = redirect_all_stdout)
