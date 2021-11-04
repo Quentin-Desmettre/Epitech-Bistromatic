@@ -45,5 +45,6 @@ typedef unsigned long long ull;
 void usage(void);
 int bistromatic(int ac, char **av);
 void redirect_all_stdout(void);
+char *get_expr(int const read_size);
 
 #endif

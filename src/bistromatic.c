@@ -21,7 +21,7 @@ void usage(void)
     my_putstr("- size_read: numbers of characters to be read\n");
 }
 
-static char *get_expr(int const read_size)
+char *get_expr(int const read_size)
 {
     char *expr = 0;
 
