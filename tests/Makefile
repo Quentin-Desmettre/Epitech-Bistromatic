@@ -16,7 +16,7 @@ SRC = test_check_2.c \
 	test_add_base.c \
 	test_add_others.c \
 	test_eval_expr.c \
-	test_sub.c
+	test_sub.c \
 	test_check.c \
 	test_check_expr_3.c \
 	test_check_expr_others_2.c \
