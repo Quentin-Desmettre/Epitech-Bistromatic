@@ -5,11 +5,17 @@
 ## makefile for all source code
 ##
 
-SRC = test_check.c \
+SRC = test_check_2.c \
+	test_check_expr_2.c \
 	test_check_expr.c \
 	test_check_expr_others.c \
-	test_mul.c \
-	test_check_expr_others_2.c
+	test_mul_base.c \
+	test_mul_others.c \
+	test_check.c \
+	test_check_expr_3.c \
+	test_check_expr_others_2.c \
+	test_clean_expr.c \
+	test_mul.c
 
 FLAGS = -c -g -Wall -Wextra
 

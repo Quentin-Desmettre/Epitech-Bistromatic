@@ -21,6 +21,7 @@ all:
 	make -C mul/
 	make -C div/
 	make -C mod/
+	make -C pow/
 	gcc $(FLAGS) $(SRC) -I $(INCLUDE) -L $(LIB) -lmy
 	cp $(OBJ) ../../
 
@@ -39,6 +40,7 @@ clean:
 	make -C mul/ clean
 	make -C div/ clean
 	make -C mod/ clean
+	make -C pow/ clean
 	rm -f $(OBJ)
 
 re: clean all

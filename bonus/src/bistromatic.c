@@ -9,6 +9,7 @@
 #include "bistromatic.h"
 #include <fcntl.h>
 #include <unistd.h>
+#include "exp.h"
 
 void usage(void)
 {

@@ -28,7 +28,7 @@ int check_base(char const *base)
 
 int check_ops(char const *ops)
 {
-    if (my_strlen(ops) != 7) {
+    if (my_strlen(ops) != 9) {
         my_putstr(SYNTAX_ERROR_MSG);
         return 0;
     }

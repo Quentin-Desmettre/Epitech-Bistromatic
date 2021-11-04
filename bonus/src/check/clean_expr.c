@@ -75,5 +75,6 @@ int cleanex(char **expr, char *base, char *ops)
             remove_zeros(expr, base, i + 1 - shift);
         }
     }
+    clean_dot(expr, base, ops);
     return 1;
 }

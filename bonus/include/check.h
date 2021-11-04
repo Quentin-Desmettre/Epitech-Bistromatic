@@ -23,7 +23,7 @@ int check_double_paren(char const *str, char const *ops, int i);
 int check_double_ops(char const *str, char const *ops, int i);
 int check_ops_paren(char const *str, char const *base,
     char const *ops, int i);
-int check_expr(char const *str, char const *base, char const *ops);
+int check_expr(char *str, char const *base, char *ops);
 int count_occurences(char const c, char const *str);
 int check_redundance(char const *str);
 int check_base_ops(char const *base, char const *ops);
@@ -34,5 +34,7 @@ int replace_negs(char **expr, char *base, char *ops, int i);
 int remove_zeros(char **expr, char *base, int i);
 int is_rm_zero(char *expr, char *ops, int i);
 int cleanex(char **expr, char *base, char *ops);
+int check_multi_dot(char *str, char const *ops);
+void clean_dot(char **expr, char *base, char *ops);
 
 #endif

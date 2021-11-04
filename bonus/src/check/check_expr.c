@@ -69,11 +69,12 @@ int check_ops_paren(char const *str, char const *base,
     return 1;
 }
 
-int check_expr(char const *str, char const *base, char const *ops)
+int check_expr(char 
+*str, char const *base, char *ops)
 {
     if (!(check_base_ops(base, ops) &&
     check_basic(str, base, ops) && check_paren(str, ops) &&
-    check_ops_place(str, ops)))
+    check_ops_place(str, ops) && check_multi_dot(str, ops)))
         return 0;
     for (int i = 0; str[i]; i++) {
         if (!(check_ops_paren(str, base, ops, i) &&
