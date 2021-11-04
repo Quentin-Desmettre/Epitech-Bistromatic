@@ -21,7 +21,8 @@ SRC = test_check_2.c \
 	test_check_expr_3.c \
 	test_check_expr_others_2.c \
 	test_clean_expr.c \
-	test_mul.c
+	test_mul.c \
+	test_evaluate_simple.c
 
 FLAGS = -c -g -Wall -Wextra
 

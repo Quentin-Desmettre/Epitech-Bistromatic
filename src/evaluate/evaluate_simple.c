@@ -22,7 +22,7 @@ char *compute_raw(int start, int *len, int *len_1, expr_params_t *par)
     return tmp;
 }
 
-static char *evaluate_with(char *expr, char *base, char *ops, char *op_valid)
+char *evaluate_with(char *expr, char *base, char *ops, char *op_valid)
 {
     char *tmp;
     int nb_rm;

@@ -19,3 +19,13 @@ Test(compute_raw, do_good_call)
     expr_params_t par = {calc, "0123456789", "()+-*/%"};
     cr_assert_str_eq(compute_raw(start, &len, &len_first, &par), "25");
 }
+
+Test(evaluate_with, nice_evaluate_with_parenthese)
+{
+    char *expr = my_strdup("5+5*9+8");
+    char *base = "0123456789";
+    char *ops = "()+-*/%";
+    char *op_valid = "*/%";
+
+    cr_assert_str_eq(evaluate_with(expr, base, ops, op_valid), "5+45+8");
+}

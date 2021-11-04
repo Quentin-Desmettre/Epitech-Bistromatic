@@ -16,5 +16,6 @@ char *eval_expr(char *str, char *base, char *ops);
 char *val_tempo(char *calcul, int *i, int *j, char *ops);
 char *prio(char *calcul, char *base, char *ops);
 char *compute_raw(int start, int *len, int *len_1, expr_params_t *par);
+char *evaluate_with(char *expr, char *base, char *ops, char *op_valid);
 
 #endif
