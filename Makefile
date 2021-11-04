@@ -20,6 +20,7 @@ tests_run: fclean
 	make -C ./tests/
 	gcc -o unit_tests *.o $(LIBS) --coverage -lcriterion
 	./unit_tests
+	gcovr --exclude test --html --html-details -o bistro.html
 
 clean:
 	rm -f *.o
@@ -31,5 +32,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	rm -f unit_tests
+	rm -f *.html
+	rm -f *.css
 
 re: fclean all

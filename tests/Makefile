@@ -22,7 +22,10 @@ SRC = test_check_2.c \
 	test_check_expr_others_2.c \
 	test_clean_expr.c \
 	test_mul.c \
-	test_evaluate_simple.c
+	test_evaluate_simple.c \
+	test_get_prev_next.c \
+	test_nb_to_str.c \
+	test_bistromatic.c
 
 FLAGS = -c -g -Wall -Wextra
 
