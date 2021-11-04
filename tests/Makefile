@@ -11,20 +11,17 @@ SRC = test_check_2.c \
 	test_check_expr_others.c \
 	test_mul_base.c \
 	test_mul_others.c \
-<<<<<<< HEAD
 	test_mul_func.c \
 	test_add.c \
 	test_add_base.c \
 	test_add_others.c \
 	test_eval_expr.c \
 	test_sub.c
-=======
 	test_check.c \
 	test_check_expr_3.c \
 	test_check_expr_others_2.c \
 	test_clean_expr.c \
 	test_mul.c
->>>>>>> 4945c39a700cbb08b829cc61770161e2b91011f0
 
 FLAGS = -c -g -Wall -Wextra
 
