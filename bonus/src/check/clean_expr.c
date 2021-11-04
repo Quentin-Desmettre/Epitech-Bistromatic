@@ -70,7 +70,7 @@ int cleanex(char **expr, char *base, char *ops)
         }
     }
     for (int i = 0; (*expr)[i]; i++) {
-        if (contain(ops, (*expr)[i]) || i == 0) {
+        if ((contain(ops, (*expr)[i]) || i == 0) && (*expr)[i] != ops[8]) {
             shift = is_rm_zero(*expr, ops, i);
             remove_zeros(expr, base, i + 1 - shift);
         }

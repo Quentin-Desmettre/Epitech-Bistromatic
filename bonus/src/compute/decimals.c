@@ -22,6 +22,21 @@ int nb_decimals(char *str, char *ops)
     return nb;
 }
 
+void adapt(char **str, char *ops)
+{
+    int index = index_of(ops[8], *str);
+
+    if (index >= 0)
+        *str = replace(*str, index, 1, "");
+}
+
+void put_coma(char **result, int index)
+{
+    index = my_strlen(*result) - index;
+    if (index != my_strlen(*result))
+        *result = replace(*result, index, 0, ".");
+}
+
 void compute_decimal_part(char **result, char *r, char *diviseur, expr_params_t *par)
 {
     char *tmp;

@@ -45,6 +45,10 @@ ull *replace_digit(char *fir, char *sec, char *base)
 
 char *my_mul(char *fir, char *sec, char *base, char *ops)
 {
+    
+    int index_coma = nb_decimals(fir, ops) + nb_decimals(sec, ops);
+    adapt(&fir, ops);
+    adapt(&sec, ops);
     int len = my_strlen(fir) + my_strlen(sec) + 2;
     ull *tmp;
     char *result = malloc(len + 1);
@@ -55,6 +59,8 @@ char *my_mul(char *fir, char *sec, char *base, char *ops)
         result[i] = base[tmp[i]];
     re_alloc(&result, clean_str(result, base, ops), 1);
     free(tmp);
+    put_coma(&result, index_coma);
+    cleanex(&result, base, ops);
     return (result);
 }
 
