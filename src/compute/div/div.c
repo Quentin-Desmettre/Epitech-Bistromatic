@@ -8,7 +8,6 @@
 #include <unistd.h>
 #include "bistromatic.h"
 #include "div.h"
-#define PRECISION 15
 
 void search_who_is_upper_n(char **ten_n, char **ten_n_b, char *r,
     expr_params_t *par)
@@ -66,28 +65,25 @@ void replace_add(char **q, char *ten_n, int c, expr_params_t *par)
     free(ten_n_c);
 }
 
-char *my_div(char *a, char *b, char *base, char *ops, int decimal)
+char *my_div(char *a, char *b, expr_params_t *par)
 {
-    char *q = char_to_str(base[0]);
+    char *q = char_to_str(par->base[0]);
     char *r = my_strdup(a);
     char *ten_n_b = NULL;
     char *ten_n = NULL;
     char *ten_n_bc = NULL;
     int c = 1;
-    expr_params_t par = {0, base, ops};
 
-    error_inf_div(b, base);
-    while ((my_nbr_cmp(r, b, base) >= 0) && r[0] != ops[3]) {
+    error_inf_div(b, par->base);
+    while ((my_nbr_cmp(r, b, par->base) >= 0) && r[0] != par->ops[3]) {
         ten_n_b = my_strdup(b);
-        ten_n = char_to_str(base[1]);
-        search_who_is_upper_n(&ten_n, &ten_n_b, r, &par);
-        ten_n_bc = search_who_is_upper_c(ten_n_b, r, &c, &par);
-        replace_add(&q, ten_n, c, &par);
-        replace_sub(&r, ten_n_bc, &par);
+        ten_n = char_to_str(par->base[1]);
+        search_who_is_upper_n(&ten_n, &ten_n_b, r, par);
+        ten_n_bc = search_who_is_upper_c(ten_n_b, r, &c, par);
+        replace_add(&q, ten_n, c, par);
+        replace_sub(&r, ten_n_bc, par);
         free_all(ten_n_b, ten_n, ten_n_bc);
     }
-    //if (decimal)
-        //compute_decimal_part(&q, r, b, PRECISION, base, ops);
     free(r);
     return (q);
 }
@@ -95,17 +91,18 @@ char *my_div(char *a, char *b, char *base, char *ops, int decimal)
 char *infin_div(char *a, char *b, char *base, char *ops)
 {
     char *result;
+    expr_params_t par = {0, base, ops};
 
     if (a[0] == ops[3] && b[0] == ops[3])
-        result = my_div(a + 1, b + 1, base, ops, 1);
+        result = my_div(a + 1, b + 1, &par);
     if (a[0] != ops[3] && b[0] != ops[3])
-        result = my_div(a, b, base, ops, 1);
+        result = my_div(a, b, &par);
     if (a[0] == ops[3] && b[0] != ops[3]) {
-        result = my_div(a + 1, b, base, ops, 1);
+        result = my_div(a + 1, b, &par);
         insert_at_beg(&result, ops[3], 1, 1);
     }
     if (a[0] != ops[3] && b[0] == ops[3]) {
-        result = my_div(a, b + 1, base, ops, 1);
+        result = my_div(a, b + 1, &par);
         insert_at_beg(&result, ops[3], 1, 1);
     }
     return (result);

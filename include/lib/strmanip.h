@@ -27,5 +27,6 @@ char *replace(char const *str, int start, int nb, char *new);
 void *my_memset(char *str, int c, int n);
 char *char_to_str(char c);
 void append_char(char **str, char c, int is_free);
+int strlen_free(char *str);
 
 #endif

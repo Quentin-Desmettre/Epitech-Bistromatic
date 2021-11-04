@@ -9,6 +9,19 @@
 #include "bistromatic.h"
 #include "div.h"
 
+char *check_null(char **result, char *base)
+{
+    char *r = *result;
+
+    if (r[0] == 0) {
+        free(r);
+        r = malloc(2);
+        r[0] = base[0];
+        r[1] = 0;
+    }
+    return r;
+}
+
 char *my_mod(char *a, char *b, char *base, char *ops)
 {
     char *q = char_to_str(base[0]);
@@ -30,13 +43,7 @@ char *my_mod(char *a, char *b, char *base, char *ops)
         free_all(ten_n_b, ten_n, ten_n_bc);
     }
     free(q);
-    if (r[0] == 0) {
-        free(r);
-        r = malloc(2);
-        r[0] = base[0];
-        r[1] = 0;
-    }
-    return (r);
+    return check_null(&r, base);
 }
 
 char *infin_mod(char *a, char *b, char *base, char *ops)

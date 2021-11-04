@@ -18,4 +18,4 @@ void search_who_is_upper_n(char **ten_n, char **ten_n_b, char *r,
 void append_char(char **str, char c, int is_free);
 char *char_to_str(char c);
 
-#endif //BISTRO_DIV_H
+#endif

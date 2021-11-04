@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2021
+** div
+** File description:
+** div
+*/
+
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
 #include "bistromatic.h"

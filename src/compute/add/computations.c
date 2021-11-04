@@ -8,14 +8,6 @@
 #include "bistromatic.h"
 #include <stdlib.h>
 
-static int strlen_free(char *str)
-{
-    int len = my_strlen(str);
-
-    free(str);
-    return len;
-}
-
 static void put_same_length(char **first, char **second, char *base, char *ops)
 {
     int len_f;
@@ -60,14 +52,12 @@ static char *compute_sub(char *first, char *second, char *base, char *ops)
         result[i + 1] += index_of(first[i], base) - index_of(second[i], base);
         if (result[i + 1] < 0) {
             index_of_first = index_of(first[i - 1], base);
-            if (index_of_first == 0)
-                first[i - 1] = -1;
-            else
-                first[i - 1] = base[index_of_first - 1]; 
+            first[i - 1] = (index_of_first == 0) ? (-1) :
+            base[index_of_first - 1];
             result[i + 1] += my_strlen(base);
         }
     }
-    return reput_str_good(&result, len, base, ops);    
+    return reput_str_good(&result, len, base, ops);
 }
 
 char *my_sub(char *first, char *second, int is_rec, expr_params_t *par)

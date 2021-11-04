@@ -5,6 +5,8 @@
 ** count number of characters in a string
 */
 
+#include <stdlib.h>
+
 int my_strlen(char const *str)
 {
     int len = 0;
@@ -13,5 +15,13 @@ int my_strlen(char const *str)
         ++len;
         ++str;
     }
+    return len;
+}
+
+int strlen_free(char *str)
+{
+    int len = my_strlen(str);
+
+    free(str);
     return len;
 }

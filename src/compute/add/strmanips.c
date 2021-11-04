@@ -53,12 +53,10 @@ char *clean_str(char *str, char *base, char *ops)
         start++;
         insert_neg = 1;
     }
-    while (str[start] && str[start] == base[0]) {
+    while (str[start] && str[start] == base[0])
         start++;
-    }
-    if (my_nbr_cmp(str, "0", base) == 0) {
+    if (my_nbr_cmp(str, "0", base) == 0)
         return null;
-    }
     new = my_strdup(str + start);
     (insert_neg == 1) ? insert_at_beg(&new, ops[3], 1, 1) : 0;
     free(null);
