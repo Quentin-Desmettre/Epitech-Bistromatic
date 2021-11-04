@@ -12,7 +12,7 @@ LIBS = -L ./lib/my/ -lmy
 all:
 	make -C ./lib/my/ && make -C ./lib/my/ clean
 	make -C ./src/
-	gcc -o $(NAME) *.o $(LIBS) -lm
+	gcc -o $(NAME) *.o $(LIBS)
 
 tests_run: fclean
 	make -C ./lib/my/ && make -C ./lib/my/ clean
