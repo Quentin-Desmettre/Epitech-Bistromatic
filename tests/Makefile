@@ -6,10 +6,26 @@
 ##
 
 SRC = test_check.c \
+	test_check_2.c \
 	test_check_expr.c \
+	test_check_expr_2.c \
+	test_check_expr_3.c \
 	test_check_expr_others.c \
+<<<<<<< HEAD
+	test_check_expr_other_2.c \
+	test_clean_expr.c \
+	test_mul.c \
+	test_mul_base.c \
+	test_mul_others.c \
+	test_mul_func.c \
+	test_add.c \
+	test_add_base.c \
+	test_add_others.c
+
+=======
 	test_mul.c \
 	test_check_expr_others_2.c
+>>>>>>> 10e2ea53bb8bd08490def4b5ce5cdd8e169d7341
 
 FLAGS = -c -g -Wall -Wextra
 

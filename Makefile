@@ -14,7 +14,7 @@ all:
 	make -C ./src/
 	gcc -o $(NAME) *.o $(LIBS) -lm
 
-tests_run:
+tests_run: fclean
 	make -C ./lib/my/ && make -C ./lib/my/ clean
 	make -C ./src/ tests
 	make -C ./tests/
