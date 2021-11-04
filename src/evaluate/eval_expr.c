@@ -8,7 +8,7 @@
 #include "bistromatic.h"
 #include <stdlib.h>
 
-static char *val_tempo(char *calcul, int *i, int *j, char *ops)
+char *val_tempo(char *calcul, int *i, int *j, char *ops)
 {
     char *tempo;
     int h = 0;
@@ -23,7 +23,7 @@ static char *val_tempo(char *calcul, int *i, int *j, char *ops)
     return tempo;
 }
 
-static char *prio(char *calcul, char *base, char *ops)
+char *prio(char *calcul, char *base, char *ops)
 {
     int i = 0;
     int j = 0;

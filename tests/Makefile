@@ -19,7 +19,8 @@ SRC = test_check.c \
 	test_mul_func.c \
 	test_add.c \
 	test_add_base.c \
-	test_add_others.c
+	test_add_others.c \
+	test_eval_expr.c
 
 FLAGS = -c -g -Wall -Wextra
 
