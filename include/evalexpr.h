@@ -20,5 +20,7 @@ char *evaluate_with(char *expr, char *base, char *ops, char *op_valid);
 int len_to_next(char *str, int start, char *base, char *ops);
 int len_to_prev(char *str, int start, char *base, char *ops);
 void show_extrem_min(char **jambon);
+void do_recursion_part(int nb, char **jambon);
+int nb_len(int nb);
 
 #endif

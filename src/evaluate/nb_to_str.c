@@ -13,7 +13,7 @@ void show_extrem_min(char **jambon)
     *jambon = my_strcpy(*jambon, "-2147483648");
 }
 
-static void do_recursion_part(int nb, char **jambon)
+void do_recursion_part(int nb, char **jambon)
 {
     if (nb >= 0 && nb <= 9) {
         (*jambon)[my_strlen(*jambon)] = (nb + 48);
@@ -23,7 +23,7 @@ static void do_recursion_part(int nb, char **jambon)
     }
 }
 
-static int nb_len(int nb)
+int nb_len(int nb)
 {
     int i = 0;
 
