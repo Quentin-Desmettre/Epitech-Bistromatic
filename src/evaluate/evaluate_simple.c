@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "bistromatic.h"
 
-static char *compute_raw(int start, int *len, int *len_1, expr_params_t *par)
+char *compute_raw(int start, int *len, int *len_1, expr_params_t *par)
 {
     char *first = get_prev_number(par->expr, start, par->base, par->ops);
     char *second = get_next_number(par->expr, start, par->base, par->ops);

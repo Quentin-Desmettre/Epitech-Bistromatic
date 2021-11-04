@@ -32,8 +32,8 @@ Test(prio, calc_only_1time)
     cr_assert_str_eq(prio(calcul, base, ops), "(5+5*5+45)");
     calcul = "(5+5*5+45)";
     cr_assert_str_eq(prio(calcul, base, ops), "75");
-    calcul = "()";
-    cr_assert_str_eq(prio(calcul, base, ops), "");
+    calcul = "55";
+    cr_assert_str_eq(prio(calcul, base, ops), "55");
 }
 
 Test(eval_expr, calc_all)
