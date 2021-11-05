@@ -59,7 +59,7 @@ char *my_mul(char *fir, char *sec, char *base, char *ops)
         result[i] = base[tmp[i]];
     re_alloc(&result, clean_str(result, base, ops), 1);
     free(tmp);
-    put_coma(&result, index_coma);
+    put_coma(&result, index_coma, ops);
     cleanex(&result, base, ops);
     return (result);
 }

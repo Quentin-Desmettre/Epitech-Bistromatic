@@ -17,12 +17,8 @@ all:
 clean:
 	rm -f *.o
 	make -C ./src/ clean
-	make -C ./tests/ clean
-	find . -name "*.gcda" -delete
-	find . -name "*.gcno" -delete
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f unit_tests
 
 re: fclean all
