@@ -46,7 +46,7 @@ static char *evaluate_with(char *expr, char *base, char *ops, char *op_valid)
 
 char *evaluate(char *expr, char *base, char *ops)
 {
-    char op_first[4] = {ops[4], ops[5], ops[6], 0};
+    char op_first[5] = {ops[4], ops[5], ops[6], ops[7], 0};
     char op_second[3] = {ops[2], ops[3], 0};
 
     expr = evaluate_with(expr, base, ops, op_first);

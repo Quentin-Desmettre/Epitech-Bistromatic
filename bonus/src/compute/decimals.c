@@ -34,7 +34,7 @@ void put_coma(char **result, int index)
 {
     index = my_strlen(*result) - index;
     if (index != my_strlen(*result))
-        *result = replace(*result, index, 0, ".");
+        re_alloc(result, replace(*result, index, 0, "."), 0);
 }
 
 void compute_decimal_part(char **result, char *r, char *diviseur, expr_params_t *par)
@@ -46,7 +46,7 @@ void compute_decimal_part(char **result, char *r, char *diviseur, expr_params_t 
 
     r = my_strdup(r);
     if (mod[0] != base[0])
-        append_char(result, '.', 1);
+        append_char(result, ops[8], 1);
     else {
         free(mod);
         return;
@@ -76,6 +76,8 @@ void adapt_decimals(char **first, char **second, char *base, char *ops)
         re_alloc(first, replace(*first, fir_dot, 1, ""), 1);
     if (sec_dot >= 0)
         re_alloc(second, replace(*second, sec_dot, 1, ""), 1);
+    cleanex(first, base, ops);
+    cleanex(second, base, ops);
     if (deci_fir > deci_sec)
         append(second, zeros, 1);
     else

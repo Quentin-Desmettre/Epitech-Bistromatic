@@ -54,6 +54,7 @@ char *eval_expr(char *str, char *base, char *ops)
         tmp = str;
         str = prio(str, base, ops);
         free(tmp);
+        break;
     }
     free(ops_without_dot);
     return str;

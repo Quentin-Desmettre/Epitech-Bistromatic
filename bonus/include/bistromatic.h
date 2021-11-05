@@ -26,7 +26,7 @@
     #define SYNTAX_ERROR_MSG "syntax error\n"
     #define ERROR_MSG "error\n"
     #include <stdio.h>
-    #define PRECISION 10
+    #define PRECISION 12
 
 typedef struct expr_params {
     char *expr;
