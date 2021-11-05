@@ -43,4 +43,6 @@ Test(eval_expr, calc_all)
     char *ops = "()+-*/%";
 
     cr_assert_str_eq(eval_expr(str, base, ops), "75");
+    str =  my_strdup("-0-0");
+    cr_assert_str_eq(eval_expr(str, base, ops), "0");
 }
