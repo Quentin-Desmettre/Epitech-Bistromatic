@@ -11,7 +11,6 @@
 char *infin_add(char *fir, char *sec, char *base, char *ops)
 {
     char *result;
-    char *tmp;
     expr_params_t par = {0, base, ops};
     int first_decim = index_of(ops[8], sec);
     int sec_decim = index_of(ops[8], sec);
@@ -31,10 +30,8 @@ char *infin_add(char *fir, char *sec, char *base, char *ops)
     if (fir[0] != ops[3] && sec[0] != ops[3]) {
         result = my_add(fir, sec, base, ops);
     }
-    tmp = result;
     if (index > 0)
-        re_alloc(&result, (replace(result, index + 1, 0, &ops[8])), 0);
+        re_alloc(&result, (replace(result, index + 1, 0, &ops[8])), 1);
     cleanex(&result, base, ops);
-    free(tmp);
     return result;
 }
