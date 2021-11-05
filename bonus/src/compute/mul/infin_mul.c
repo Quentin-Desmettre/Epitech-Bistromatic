@@ -60,7 +60,6 @@ char *my_mul(char *fir, char *sec, char *base, char *ops)
     re_alloc(&result, clean_str(result, base, ops), 1);
     free(tmp);
     put_coma(&result, index_coma);
-    (result[0] == ops[8]) ? insert_at_beg(&result, base[0], 1, 0) : 0;
     cleanex(&result, base, ops);
     return (result);
 }

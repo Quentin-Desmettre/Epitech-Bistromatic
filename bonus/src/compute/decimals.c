@@ -33,7 +33,13 @@ void adapt(char **str, char *ops)
 void put_coma(char **result, int index)
 {
     index = my_strlen(*result) - index;
-    if (index != my_strlen(*result))
+    
+    if (index <= 0) {
+        index *= -1;
+        insert_at_beg(result, '0', index + 1, 1);
+        re_alloc(result, replace(*result, 1, 0, "."), 0);
+    }
+    else if (index != my_strlen(*result))
         re_alloc(result, replace(*result, index, 0, "."), 0);
 }
 

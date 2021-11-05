@@ -10,8 +10,8 @@
 
 char *replace(char const *str, int from, int nb, char *new)
 {
-    int len = my_strlen(str) - nb + my_strlen(new) + 1;
-    char *new_string = malloc(sizeof(char) * len);
+    int len = my_strlen(str) - nb + my_strlen(new);
+    char *new_string = malloc(sizeof(char) * (len + 1));
     int len_new = my_strlen(new);
 
     for (int i = 0; i < from; i++) {
@@ -23,6 +23,6 @@ char *replace(char const *str, int from, int nb, char *new)
     for (int i = from + len_new; str[i + nb - len_new]; i++) {
         new_string[i] = str[i + nb - len_new];
     }
-    new_string[len - 1] = '\0';
+    new_string[len] = '\0';
     return new_string;
 }
