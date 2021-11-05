@@ -32,7 +32,8 @@ void search_who_is_upper_n(char **ten_n, char **ten_n_b, char *r,
     *ten_n_b = tmp_n;
 }
 
-char *search_who_is_upper_c(char *ten_n_b, char *r, int *c, expr_params_t *par)
+char *search_who_is_upper_c(char *ten_n_b, char *r, int *c, 
+expr_params_t *par)
 {
     char *c_char = my_strdup("For free");
     char *ten_n_bc = NULL;

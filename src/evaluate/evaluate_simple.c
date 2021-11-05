@@ -23,7 +23,7 @@ void check_evaluate(char **expr, char *op_valid, int *i, expr_params_t *par)
             par->expr = tmp2;
             *expr = tmp2;
             *i = 0;
-        }            
+        }
         free(tmp);
     }
 }
@@ -33,7 +33,7 @@ char *compute_raw(int start, int *len, int *len_1, expr_params_t *par)
     char *first = get_prev_number(par->expr, start, par->base, par->ops);
     char *second = get_next_number(par->expr, start, par->base, par->ops);
     char *tmp;
-    
+
     if (my_strlen(first) == 0 || my_strlen(second) == 0)
         return 0;
     tmp = do_op(first, index_of(par->expr[start], par->ops) - 2,

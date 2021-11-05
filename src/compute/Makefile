@@ -9,7 +9,7 @@ SRC = doop.c
 
 OBJ = $(SRC:.c=.o)
 
-FLAGS = -c -g -Wall -Wextra
+FLAGS = -Wall -Wextra
 
 INCLUDE = ../../include/
 
@@ -21,7 +21,7 @@ all:
 	make -C mul/
 	make -C div/
 	make -C mod/
-	gcc $(FLAGS) $(SRC) -I $(INCLUDE) -L $(LIB) -lmy
+	gcc $(FLAGS) -c $(SRC) -I $(INCLUDE) -L $(LIB) -lmy
 	cp $(OBJ) ../../
 
 tests:
@@ -30,7 +30,7 @@ tests:
 	make -C mul/ tests
 	make -C div/ tests
 	make -C mod/ tests
-	gcc $(FLAGS) $(SRC) -I $(INCLUDE) -L $(LIB) -lmy --coverage -lcriterion
+	gcc $(FLAGS) -c $(SRC) -I $(INCLUDE) -L $(LIB) -lmy --coverage -lcriterion
 	cp $(OBJ) ../../
 
 clean:

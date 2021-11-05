@@ -71,7 +71,6 @@ char *my_sub(char *first, char *second, int is_rec, expr_params_t *par)
     first = my_strdup(first);
     if (len_f < len_s) {
         result = my_sub(second, first, 1, par);
-        
         if (!is_rec)
             insert_at_beg(&result, par->ops[3], 1, 1);
         return result;

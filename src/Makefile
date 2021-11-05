@@ -10,24 +10,26 @@ SRC = main.c \
 
 OBJ = $(SRC:.c=.o)
 
-FLAGS = -c -g -Wall -Wextra
+FLAGS = -Wall -Wextra
 
 INCLUDE = ../include
 
 LIB = ../lib/my
 
+FULL_LIBS = -L $(LIB) -lmy $(DEBUG_FLAGS)
+
 all:
 	make -C check/
 	make -C compute/
 	make -C evaluate/
-	gcc $(FLAGS) -I $(INCLUDE) $(SRC) -L $(LIB) -lmy
+	gcc $(FLAGS) -I $(INCLUDE) -c $(SRC) -L $(LIB) -lmy
 	cp $(OBJ) ../
 
 tests:
 	make -C check/ tests
 	make -C compute/ tests
 	make -C evaluate/ tests
-	gcc $(FLAGS) -I $(INCLUDE) bistromatic.c $(TESTS) -L $(LIB) -lmy --coverage -lcriterion
+	gcc $(FLAGS) -I $(INCLUDE) -c bistromatic.c -L $(LIB) -lmy $(DEBUG_FLAGS)
 	cp *.o ../
 
 clean:
