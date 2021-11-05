@@ -32,6 +32,8 @@ int check_basic(char const *str, char const *base, char const *ops);
 int_pair_t lens_to_nb(char const *expr, char const *ops, int i);
 int replace_negs(char **expr, char *base, char *ops, int i);
 int remove_zeros(char **expr, char *base, int i);
-
+int is_rm_zero(char *expr, char *ops, int i);
+int cleanex(char **expr, char *base, char *ops);
+char *check_null(char **result, char *base);
 
 #endif
