@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2021
-** Bistro
+** div.h
 ** File description:
-** bistro.h
+** div.h
 */
 #ifndef BISTRO_DIV_H
     #define BISTRO_DIV_H
