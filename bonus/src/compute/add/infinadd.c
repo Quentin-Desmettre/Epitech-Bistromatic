@@ -14,13 +14,12 @@ char *infin_add(char *first, char *second, char *base, char *ops)
     char *sec = my_strdup(second);
     char *result;
     expr_params_t par = {0, base, ops};
-    int first_decim = index_of(ops[8], sec);
+    int first_decim = index_of(ops[8], fir);
     int sec_decim = index_of(ops[8], sec);
     adapt_decimals(&fir, &sec, base, ops);
     int index = 0;
 
-(first_decim > sec_decim) ? (index = first_decim) : (index = sec_decim);
-
+    (first_decim > sec_decim) ? (index = first_decim) : (index = sec_decim);
     if (fir[0] == ops[3] && sec[0] == ops[3]) {
         result = my_add(fir, sec, base, ops);
         insert_at_beg(&result, ops[3], 1, 1);
