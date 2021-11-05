@@ -26,15 +26,6 @@ all:
 	gcc $(FLAGS) $(SRC) -I $(INCLUDE) -L $(LIB) -lmy
 	cp $(OBJ) ../../
 
-tests:
-	make -C add/ tests
-	make -C sub/ tests
-	make -C mul/ tests
-	make -C div/ tests
-	make -C mod/ tests
-	gcc $(FLAGS) $(SRC) -I $(INCLUDE) -L $(LIB) -lmy --coverage -lcriterion
-	cp $(OBJ) ../../
-
 clean:
 	make -C add/ clean
 	make -C sub/ clean
