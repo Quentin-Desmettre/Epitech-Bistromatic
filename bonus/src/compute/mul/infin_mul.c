@@ -67,6 +67,7 @@ char *my_mul(char *fir, char *sec, char *base, char *ops)
 char *infin_mul(char *fir, char *sec, char *base, char *ops)
 {
     char *result;
+    int n_dec;
 
     if (fir[0] == ops[3] && sec[0] == ops[3])
         result = my_mul(fir + 1, sec + 1, base, ops);
@@ -79,6 +80,10 @@ char *infin_mul(char *fir, char *sec, char *base, char *ops)
     if (fir[0] != ops[3] && sec[0] == ops[3]) {
         result = my_mul(fir, sec + 1, base, ops);
         insert_at_beg(&result, ops[3], 1, 1);
+    }
+    n_dec = nb_decimals(result, ops);
+    if (n_dec > PRECISION) {
+        result[my_strlen(result) - n_dec + PRECISION] = 0;
     }
     return (result);
 }

@@ -10,7 +10,7 @@ NAME = calc
 LIBS = -L ./lib/my/ -lmy
 
 all:
-	make -C ./lib/my/ && make -C ./lib/my/ clean
+	make -C ./lib/my/ && make -C ./lib/my clean
 	make -C ./src/
 	gcc -o $(NAME) *.o $(LIBS) -lm
 

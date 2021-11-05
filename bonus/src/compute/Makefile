@@ -10,7 +10,7 @@ SRC = doop.c \
 
 OBJ = $(SRC:.c=.o)
 
-FLAGS = -c -g -Wall -Wextra
+FLAGS = -c -Wall -Wextra
 
 INCLUDE = ../../include/
 

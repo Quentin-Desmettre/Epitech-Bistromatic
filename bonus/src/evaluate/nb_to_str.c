@@ -8,21 +8,12 @@
 #include <stdlib.h>
 #include "lib/strmanip.h"
 
-static void show_extrem_min(char **jambon)
+void show_extrem_min(char **jambon)
 {
-    (*jambon)[my_strlen(*jambon)] = ('2');
-    (*jambon)[my_strlen(*jambon)] = ('1');
-    (*jambon)[my_strlen(*jambon)] = ('4');
-    (*jambon)[my_strlen(*jambon)] = ('7');
-    (*jambon)[my_strlen(*jambon)] = ('4');
-    (*jambon)[my_strlen(*jambon)] = ('8');
-    (*jambon)[my_strlen(*jambon)] = ('3');
-    (*jambon)[my_strlen(*jambon)] = ('6');
-    (*jambon)[my_strlen(*jambon)] = ('4');
-    (*jambon)[my_strlen(*jambon)] = ('8');
+    *jambon = my_strcpy(*jambon, "-2147483648");
 }
 
-static void do_recursion_part(int nb, char **jambon)
+void do_recursion_part(int nb, char **jambon)
 {
     if (nb >= 0 && nb <= 9) {
         (*jambon)[my_strlen(*jambon)] = (nb + 48);
@@ -32,7 +23,7 @@ static void do_recursion_part(int nb, char **jambon)
     }
 }
 
-static int nb_len(int nb)
+int nb_len(int nb)
 {
     int i = 0;
 

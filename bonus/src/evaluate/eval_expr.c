@@ -49,11 +49,19 @@ char *eval_expr(char *str, char *base, char *ops)
     char *tmp;
     char *ops_without_dot = replace(ops, 8, 1, "");
 
-    while (contain_any_of(str + 1, ops_without_dot)) {
+    while (my_strlen(str) > 1 &&
+    contain_any_of(str + 1, ops_without_dot)) {
         cleanex(&str, base, ops);
         tmp = str;
         str = prio(str, base, ops);
         free(tmp);
+    }
+    cleanex(&str, base, ops);
+    if (str[0] == 0 ||
+    (str[0] == ops[3] && str[1] == base[0]) ||
+    (str[0] == ops[3] && str[1] == 0)) {
+        free(str);
+        str = char_to_str(base[0]);
     }
     free(ops_without_dot);
     return str;

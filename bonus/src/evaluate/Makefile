@@ -9,22 +9,17 @@ SRC = eval_expr.c \
 	evaluate_simple.c \
 	get_prev_next.c \
 	nb_to_str.c
-#convert_base.c
 
 OBJ = $(SRC:.c=.o)
 
-FLAGS = -c -g -Wall -Wextra
+FLAGS = -Wall -Wextra
 
 INCLUDE = ../../include/
 
 LIB = ../../lib/my/
 
 all:
-	gcc $(FLAGS) -I $(INCLUDE) $(SRC) -L $(LIB) -lmy
-	cp $(OBJ) ../../
-
-tests:
-	gcc $(FLAGS) -I $(INCLUDE) $(SRC) -L $(LIB) -lmy --coverage -lcriterion
+	gcc $(FLAGS) -I $(INCLUDE) -c $(SRC) -L $(LIB) -lmy
 	cp $(OBJ) ../../
 
 clean:

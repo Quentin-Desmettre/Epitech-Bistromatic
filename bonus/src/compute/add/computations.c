@@ -61,7 +61,7 @@ static char *compute_sub(char *first, char *second, char *base, char *ops)
 }
 
 char *my_sub(char *first, char *second, int is_rec, expr_params_t *par)
-{
+{ 
     char *result;
     int len_f = strlen_free(clean_str(first, par->base, par->ops));
     int len_s = strlen_free(clean_str(second, par->base, par->ops));

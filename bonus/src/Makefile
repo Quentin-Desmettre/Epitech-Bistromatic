@@ -10,7 +10,7 @@ SRC = main.c \
 
 OBJ = $(SRC:.c=.o)
 
-FLAGS = -c -g -Wall -Wextra
+FLAGS = -c -Wall -Wextra
 
 INCLUDE = ../include
 
@@ -22,13 +22,6 @@ all:
 	make -C evaluate/
 	gcc $(FLAGS) -I $(INCLUDE) $(SRC) -L $(LIB) -lmy
 	cp $(OBJ) ../
-
-tests:
-	make -C check/ tests
-	make -C compute/ tests
-	make -C evaluate/ tests
-	gcc $(FLAGS) -I $(INCLUDE) bistromatic.c $(TESTS) -L $(LIB) -lmy --coverage -lcriterion
-	cp *.o ../
 
 clean:
 	rm -f *.o

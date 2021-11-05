@@ -14,6 +14,8 @@ char *replace(char const *str, int from, int nb, char *new)
     char *new_string = malloc(sizeof(char) * (len + 1));
     int len_new = my_strlen(new);
 
+    if (from < 0)
+        return my_strdup(str);
     for (int i = 0; i < from; i++) {
         new_string[i] = str[i];
     }
