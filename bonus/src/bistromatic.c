@@ -48,6 +48,7 @@ int bistromatic(int ac, char **av)
     int size = 0;
     char *expr;
 
+    printf("e^7: %s\n", my_exp(my_strdup("7"), "0123456789", "()+-*/%^."));
     if (!check_all(ac, av))
         return 84;
     size = my_getnbr(av[3]);

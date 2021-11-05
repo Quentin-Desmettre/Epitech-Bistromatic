@@ -31,8 +31,9 @@ void put_same_length(char **first, char **second, char *base, char *ops)
 
 char *reput_str_good(char **result, int len, char *base, char *ops)
 {
-    for (int i = 0; i < len + 1; i++)
+    for (int i = 0; i < len + 1; i++) {
         (*result)[i] = base[(int) (*result)[i]];
+    }
     re_alloc(result, clean_str(*result, base, ops), 1);
     return *result;
 }
@@ -70,6 +71,7 @@ char *my_sub(char *first, char *second, int is_rec, expr_params_t *par)
     first = my_strdup(first);
     if (len_f < len_s) {
         result = my_sub(second, first, 1, par);
+        
         if (!is_rec)
             insert_at_beg(&result, par->ops[3], 1, 1);
         return result;

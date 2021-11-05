@@ -48,16 +48,15 @@ char *eval_expr(char *str, char *base, char *ops)
 {
     char *tmp;
 
-    while (contain_any_of(str + 1, ops)) {
+    while (my_strlen(str) > 1 && contain_any_of(str + 1, ops)) {
         cleanex(&str, base, ops);
         tmp = str;
         str = prio(str, base, ops);
         free(tmp);
     }
     cleanex(&str, base, ops);
-    if (str[0] == ops[3] && str[1] == base[0] && my_strlen(str) == 2) {
-        str[0] = base[0];
-        str[1] = 0;
-    }
+    if (str[0] == 0 ||
+    (str[0] == ops[3] && str[1] == base[0] && my_strlen(str) == 2))
+        str = char_to_str(base[0]);
     return str;
 }

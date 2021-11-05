@@ -43,11 +43,12 @@ char *my_pow(char *nb, char *pwr, char *base, char *ops)
 
 char *my_exp(char *x, char *base, char *ops)
 {
+    x=  my_strdup(x);
     char *n = my_strdup("100");
     char *one = char_to_str(base[0]);
-    char *x_over_n = infin_div(x, n, base, ops);
-    char *one_plus_x_over_n = infin_add(x_over_n, one, base, ops);
-    char *result = my_pow(one_plus_x_over_n, n, base, ops);
+    infin_div(my_strdup(x), my_strdup(n), base, ops);
+    //char *one_plus_x_over_n = infin_add(x_over_n, one, base, ops);
+    //char *result = my_pow(one_plus_x_over_n, n, base, ops);
 
-    return result;
+    return "";
 }
