@@ -22,3 +22,25 @@ Test (search_who_is_upper_n, grep_ten_nb)
     cr_assert_str_eq(ten_n_b, "1200");
 }
 
+Test (search_who_is_upper_c, grep_ten_nbc)
+{
+    expr_params_t par = {0, "0123456789", "()+-*/%"};
+    char *ten_n = my_strdup("1200");
+    char *r = my_strdup("5697");
+    int c = 1;
+
+    ten_n = search_who_is_upper_c(ten_n, r, &c, &par);
+    cr_assert_str_eq(ten_n, "4800");
+}
+
+Test (replace_add, replace_q_euclidienne)
+{
+    char *q = my_strdup("0");
+    char *ten_n = my_strdup("1200");
+    int c = 4;
+    expr_params_t par = {0, "0123456789", "()+-*/%"};
+
+    replace_add(&q, ten_n, c, &par);
+    cr_assert_str_eq(q, "4800");
+}
+
