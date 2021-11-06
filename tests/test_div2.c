@@ -42,7 +42,7 @@ Test (inf_div, all_possibility)
     cr_assert_str_eq(result, "-474");
 }
 
-Test (my_div, err_div_by_zero, .exit_code = 84)
+Test (my_div, err_div_by_zero, .init = redirect_all_stdout, .exit_code = 84)
 {
     char *a = "0";
     char *base = "0123456789";
