@@ -44,11 +44,72 @@ static char *prio(char *calcul, char *base, char *ops)
     return to_rt;
 }
 
+int highest_powers(char *str)
+{
+    int highest_order = 0;
+    int tmp_order = 0;
+    int i_max;
+    int tmp_max;
+
+    for (int i = 0; str[i]; i++) {
+        if (str[i] == '^'){
+            tmp_order++;
+            tmp_max = i;
+        }
+        else if (contain(OPS, str[i])) {
+            if (highest_order < tmp_order) {
+                highest_order = tmp_order;
+                tmp_order = 0;
+                i_max = tmp_max;
+            }
+        }
+    }
+    if (highest_order < tmp_order)
+        return tmp_max;
+    return i_max;
+}
+
+void eval_powers(char **str)
+{
+    char *left;
+    char *right;
+    char *tmp;
+    int i = 0;
+    int start = 0;
+    int nn = 0;
+    int mm = 0;
+    int nb_rm = 0;
+
+    while (contain(*str, '^')) {
+        i = highest_powers(*str);
+        left = get_prev_number_paren(*str, i);
+        right = get_next_number_paren(*str, i);
+        start = i - my_strlen(left);
+        nb_rm = my_strlen(left) + my_strlen(right) + 1;
+        if (left[0] == '('){
+            re_alloc(&left, replace(left, 0, 1, ""), 1);
+            re_alloc(&left, replace(left, my_strlen(left) - 1, 1, ""), 1);
+            i--;
+        }
+        if (right[0] == '('){
+            re_alloc(&right, replace(right, 0, 1, ""), 1);
+            re_alloc(&right, replace(right, my_strlen(right) - 1, 1, ""), 1);
+        }
+        tmp = infin_pow(left, right, BASE, OPS);
+        re_alloc(str, replace(*str, start, nb_rm, tmp), 1);
+        free(left);
+        free(right);
+        cleanex(str, BASE, OPS);
+        free(tmp);
+    }
+}
+
 char *eval_expr(char *str, char *base, char *ops)
 {
     char *tmp;
     char *ops_without_dot = replace(ops, 8, 1, "");
-
+    
+    eval_powers(&str);
     while (my_strlen(str) > 1 &&
     contain_any_of(str + 1, ops_without_dot)) {
         cleanex(&str, base, ops);
@@ -58,7 +119,7 @@ char *eval_expr(char *str, char *base, char *ops)
     }
     cleanex(&str, base, ops);
     if (str[0] == 0 ||
-    (str[0] == ops[3] && str[1] == base[0]) ||
+    (str[0] == ops[3] && str[1] == base[0] && str[2] != '.') ||
     (str[0] == ops[3] && str[1] == 0)) {
         free(str);
         str = char_to_str(base[0]);

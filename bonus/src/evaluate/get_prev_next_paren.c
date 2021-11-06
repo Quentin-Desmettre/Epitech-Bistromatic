@@ -9,43 +9,47 @@
 #include "lib/strmanip.h"
 #include "bistromatic.h"
 
-int len_to_prev(char *str, int start, char *base, char *ops)
+int len_to_prev_paren(char *str, int start)
 {
     int i = start - 1;
     int len = 0;
 
+    if (str[i] != ')') {
+        len = len_to_prev(str, start, BASE, OPS);
+        if (str[start - len] == '-')
+            return len - 1;
+        return len;
+    }
     while (i >= 0) {
-        if (contain(base, str[i]) || str[i] == ops[8])
+        if ((contain(BASE, str[i]) || contain(OPS, str[i])))
             len++;
-        else if (str[i] == ops[3] && (!i || contain(ops, str[i - 1])))
-            len++;
-        else
+        if (str[i] == OPS[0])
             break;
         i--;
     }
     return len;
 }
 
-int len_to_next(char *str, int start, char *base, char *ops)
+int len_to_next_paren(char *str, int start)
 {
     int i = start + 1;
     int len = 0;
 
-    while (1) {
-        if ((str[i] && contain(base, str[i])) || str[i] == ops[8])
+    if (str[i] != '(')
+        return len_to_next(str, start, BASE, OPS);
+    while (str[i]) {
+        if ((contain(BASE, str[i]) || contain(OPS, str[i])))
             len++;
-        else if (str[i] == ops[3] && (!i || contain(ops, str[i - 1])))
-            len++;
-        else
+        if (str[i] == ')')
             break;
         i++;
     }
     return len;
 }
 
-char *get_next_number(char *str, int start, char *base, char *ops)
+char *get_next_number_paren(char *str, int start)
 {
-    int len = len_to_next(str, start, base, ops);
+    int len = len_to_next_paren(str, start);
     char *num = malloc(sizeof(char) * len + 1);
     int i = start + 1;
 
@@ -56,9 +60,9 @@ char *get_next_number(char *str, int start, char *base, char *ops)
     return num;
 }
 
-char *get_prev_number(char *str, int start, char *base, char *ops)
+char *get_prev_number_paren(char *str, int start)
 {
-    int len = len_to_prev(str, start, base, ops);
+    int len = len_to_prev_paren(str, start);
     char *num = malloc(sizeof(char) * len + 1);
     int i = start - 1;
 

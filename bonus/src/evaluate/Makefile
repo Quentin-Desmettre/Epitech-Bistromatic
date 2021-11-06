@@ -8,11 +8,12 @@
 SRC = eval_expr.c \
 	evaluate_simple.c \
 	get_prev_next.c \
-	nb_to_str.c
+	nb_to_str.c \
+	get_prev_next_paren.c
 
 OBJ = $(SRC:.c=.o)
 
-FLAGS = -Wall -Wextra
+FLAGS = -g -Wall -Wextra
 
 INCLUDE = ../../include/
 

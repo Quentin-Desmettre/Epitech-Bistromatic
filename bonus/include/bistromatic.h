@@ -26,7 +26,10 @@
     #define SYNTAX_ERROR_MSG "syntax error\n"
     #define ERROR_MSG "error\n"
     #include <stdio.h>
-    #define PRECISION 12
+    #define PRECISION 50
+    #define OUTPUT_PRECISION 10
+    #define BASE "0123456789"
+    #define OPS "()+-*/%^."
 
 typedef struct expr_params {
     char *expr;
@@ -50,5 +53,7 @@ typedef unsigned long long ull;
 void usage(void);
 int bistromatic(int ac, char **av);
 void redirect_all_stdout(void);
+char *my_exp(char *x, char *base, char *ops);
+char *ln (char *x);
 
 #endif

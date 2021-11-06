@@ -20,6 +20,7 @@ void clean_dot_at(char **str, int i, char *base, char *ops)
         re_alloc(str, replace(*str, i, decimals_len + 1, ""), 1);
     else
         re_alloc(str, replace(*str, i + 1, decimals_len, decimals), 1);
+    free(decimals);
 }
 
 void clean_dot(char **expr, char *base, char *ops)

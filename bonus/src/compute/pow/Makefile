@@ -5,7 +5,8 @@
 ## makefile for all source code
 ##
 
-SRC = exponential.c
+SRC = exponential.c \
+	log.c
 
 FLAGS = -c -g -Wall -Wextra
 

@@ -34,8 +34,11 @@ char *compute_raw(int start, int *len, int *len_1, expr_params_t *par)
     char *second = get_next_number(par->expr, start, par->base, par->ops);
     char *tmp;
 
-    if (my_strlen(first) == 0 || my_strlen(second) == 0)
+    if (my_strlen(first) == 0 || my_strlen(second) == 0) {
+        free(first);
+        free(second);
         return 0;
+    }
     tmp = do_op(first, index_of(par->expr[start], par->ops) - 2,
     second, par);
 
@@ -59,12 +62,13 @@ static char *evaluate_with(char *expr, char *base, char *ops, char *op_valid)
 
 char *evaluate(char *expr, char *base, char *ops)
 {
+    
     char op_first[5] = {ops[4], ops[5], ops[6], ops[7], 0};
     char op_second[3] = {ops[2], ops[3], 0};
 
     cleanex(&expr, base, ops);
     expr = evaluate_with(expr, base, ops, op_first);
-    cleanex(&expr, base, ops);
+    cleanex(&expr, base, ops);   
     expr = evaluate_with(expr, base, ops, op_second);
     return expr;
 }

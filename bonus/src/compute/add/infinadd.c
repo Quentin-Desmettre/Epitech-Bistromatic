@@ -19,6 +19,7 @@ char *infin_add(char *first, char *second, char *base, char *ops)
     int nb_dec = (first_decim > sec_decim) ? (first_decim) : (sec_decim);
     char *zero = char_to_str(base[0]);
     int isneg;
+    char *zeros = "";
 
     adapt_decimals(&fir, &sec, base, ops);
     if (fir[0] == ops[3] && sec[0] == ops[3]) {
@@ -36,12 +37,19 @@ char *infin_add(char *first, char *second, char *base, char *ops)
     free(sec);
     cleanex(&result, base, ops);
     isneg = (result[0] == ops[3]) ? 1 : 0;
-    if (nb_dec > 0)
+    if (nb_dec > 0){
+        if (nb_dec > my_strlen(result) - isneg) {
+            zeros = malloc(sizeof(char) * nb_dec - my_strlen(result) + isneg + 1);
+            init_with(zeros, '0', nb_dec - my_strlen(result) + isneg);
+            zeros[nb_dec - my_strlen(result) + isneg] = 0;
+            re_alloc(&result, replace(result, isneg, 0, zeros), 1);
+            free(zeros);
+        }
         re_alloc(&result, replace(result, my_strlen(result) - nb_dec, 0, &ops[8]), 1);
-    if (result[0] == ops[8])
+    }
+    if (result[0] == ops[8] || (result[0] == ops[3] && result[1] == ops[8]))
         re_alloc(&result, replace(result, isneg, 0, zero), 1);
     cleanex(&result, base, ops);
-    exit(84);
     free(zero);
     return result;
 }

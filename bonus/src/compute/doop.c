@@ -16,6 +16,7 @@ char *do_op(char *first, int op, char *second, expr_params_t *par)
     fonc[2] = &infin_mul;
     fonc[3] = &infin_div;
     fonc[4] = &infin_mod;
-    fonc[5] = &my_pow;
+    fonc[5] = &infin_pow;
+
     return (fonc[op])(first, second, par->base, par->ops);
 }

@@ -10,6 +10,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "exp.h"
+#include <stdio.h>
+
+#define SQRT_E "1.6487212707001281468486507878141635716537761007101480115750793116406610211942156086327765200563666430028666377563077970046711669"
 
 void usage(void)
 {
@@ -22,43 +25,52 @@ void usage(void)
     my_putstr("- size_read: numbers of characters to be read\n");
 }
 
-static char *get_expr(int const read_size)
-{
-    char *expr = 0;
+unsigned long long int_fac(int i){
+    unsigned long long r = 1;
 
-    if (read_size <= 0) {
-        my_putstr(SYNTAX_ERROR_MSG);
-        return 0;
+    while (i != 0){
+        r *= i;
+        i--;
     }
-    expr = malloc(sizeof(char) * (read_size + 1));
-    if (expr == NULL) {
-        my_putstr(ERROR_MSG);
-        return 0;
-    }
-    if (read(0, expr, read_size) != read_size) {
-        my_putstr(SYNTAX_ERROR_MSG);
-        return 0;
-    }
-    expr[read_size] = '\0';
-    return expr;
+    return r;
 }
 
+int count_correct_numbers(char *f, char *s)
+{
+    int counter = 0;
+    int count = 0;
+    for (int i = 0; f[i] && s[i]; i++) {
+        if (f[i] == '.' || s[i] == '.')
+            count = 1;
+        if (count && f[i] == s[i])
+            counter++;
+    }
+    return counter;
+}
+
+void cap_decimals(char *str)
+{
+    int nb_dec = nb_decimals(str, OPS);
+    if (nb_dec > OUTPUT_PRECISION)
+        str[my_strlen(str) - nb_dec - 1 + OUTPUT_PRECISION] = 0;
+}
+
+void eval_powers(char **str);
+int highest_powers(char *str);
+char *new_ln(char *x);
 int bistromatic(int ac, char **av)
 {
-    int size = 0;
     char *expr;
-
-    if (!check_all(ac, av))
+    if (ac < 2)
         return 84;
-    size = my_getnbr(av[3]);
-    expr = get_expr(size);
-    if (!expr)
+    expr = my_strdup(av[1]);
+    if (ac < 2 || !check_expr(expr, BASE, OPS))
         return 84;
-    if (!check_expr(expr, av[1], av[2]))
-        return 84;
-    cleanex(&expr, av[1], av[2]);
-    expr = (eval_expr(expr, av[1], av[2]));
+    cleanex(&expr, BASE, OPS);
+    expr = eval_expr(expr, BASE, OPS);
+    cap_decimals(expr);
     my_putstr(expr);
+    my_putchar('\n');
     free(expr);
     return EXIT_SUCCESS;
 }

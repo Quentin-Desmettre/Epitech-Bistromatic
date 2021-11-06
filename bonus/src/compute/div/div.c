@@ -70,6 +70,7 @@ char *my_div(char *a, char *b, expr_params_t *par, int decimal)
     a = my_strdup(a);
     b = my_strdup(b);
     adapt_decimals(&a, &b, par->base, par->ops);
+    
 
     char *q = char_to_str(par->base[0]);
     char *r = my_strdup(a);
@@ -77,7 +78,6 @@ char *my_div(char *a, char *b, expr_params_t *par, int decimal)
     char *ten_n = NULL;
     char *ten_n_bc = NULL;
     int c = 1;
-
     error_inf_div(b, par->base);
     while ((my_nbr_cmp(r, b, par->base) >= 0) && r[0] != par->ops[3]) {
         ten_n_b = my_strdup(b);
