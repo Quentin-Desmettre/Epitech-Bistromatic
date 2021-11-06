@@ -44,3 +44,12 @@ Test (replace_add, replace_q_euclidienne)
     cr_assert_str_eq(q, "4800");
 }
 
+Test (replace_sub, replace_r_euclidienne)
+{
+    char *r = my_strdup("5697");
+    char *ten_n_bc = my_strdup("4800");
+    expr_params_t par = {0, "0123456789", "()+-*/%"};
+
+    replace_sub(&r, ten_n_bc, &par);
+    cr_assert_str_eq(r, "897");
+}
