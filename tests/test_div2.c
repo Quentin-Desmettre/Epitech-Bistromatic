@@ -41,3 +41,12 @@ Test (inf_div, all_possibility)
     result = infin_div(a, b + 1, base, ops);
     cr_assert_str_eq(result, "-474");
 }
+
+Test (my_div, err_div_by_zero, .exit_code = 84)
+{
+    char *a = "0";
+    char *base = "0123456789";
+
+    error_inf_div(a, base);
+    cr_expect_stdout_eq_str("error");
+}
