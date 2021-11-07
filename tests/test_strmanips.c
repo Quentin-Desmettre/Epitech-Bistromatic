@@ -22,7 +22,7 @@ Test (clean_expr, insert_at_beg, .init = redirect_all_stdout)
     char *expr = my_strdup("yo");
 
     insert_at_beg(&expr, 'h', 3, 1);
-    cr_assert_str_eq(expr, "hhhyo");    
+    cr_assert_str_eq(expr, "hhhyo");
 }
 
 Test (clean_expr, my_nbrcmp, .init = redirect_all_stdout)
