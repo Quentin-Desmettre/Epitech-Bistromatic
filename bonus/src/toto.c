@@ -22,6 +22,6 @@ void toto()
         }
         write (1, "\e[1;1H\e[2J", 11);
         write(1, buffer, size);
-        sleep(1);
+        usleep(300000);
     }
 }

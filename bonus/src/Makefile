@@ -6,7 +6,8 @@
 ##
 
 SRC = main.c \
-		bistromatic.c
+		bistromatic.c \
+		toto.c
 
 OBJ = $(SRC:.c=.o)
 

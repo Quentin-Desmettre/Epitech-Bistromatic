@@ -67,6 +67,10 @@ int bistromatic(int ac, char **av)
     if (ac < 2 || !check_expr(expr, BASE, OPS))
         return 84;
     cleanex(&expr, BASE, OPS);
+    if (my_strcmp(expr, "0+0") == 0) {
+        toto();
+        return EXIT_SUCCESS;
+    }
     expr = eval_expr(expr, BASE, OPS);
     cap_decimals(expr);
     my_putstr(expr);

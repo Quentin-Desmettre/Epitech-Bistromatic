@@ -55,5 +55,6 @@ int bistromatic(int ac, char **av);
 void redirect_all_stdout(void);
 char *my_exp(char *x, char *base, char *ops);
 char *ln (char *x);
+void toto(void);
 
 #endif
