@@ -68,7 +68,7 @@ char *evaluate(char *expr, char *base, char *ops)
 
     cleanex(&expr, base, ops);
     expr = evaluate_with(expr, base, ops, op_first);
-    cleanex(&expr, base, ops);   
+    cleanex(&expr, base, ops);
     expr = evaluate_with(expr, base, ops, op_second);
     return expr;
 }

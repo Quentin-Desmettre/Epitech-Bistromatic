@@ -101,8 +101,8 @@ void eval_powers(char **str)
             eval_powers(&left);
         if (contain(right, '^'))
             eval_powers(&right);
-        re_alloc(&left, evaluate(my_strdup(left), BASE, OPS), 1);
-        re_alloc(&right, evaluate(my_strdup(right), BASE, OPS), 1);
+        re_alloc(&left, eval_expr(my_strdup(left), BASE, OPS), 1);
+        re_alloc(&right, eval_expr(my_strdup(right), BASE, OPS), 1);
         tmp = infin_pow(left, right, BASE, OPS);
         re_alloc(str, replace(*str, start, nb_rm, tmp), 1);
         free(left);
@@ -116,8 +116,9 @@ char *eval_expr(char *str, char *base, char *ops)
 {
     char *tmp;
     char *ops_without_dot = replace(ops, 8, 1, "");
-    
-    eval_powers(&str);
+
+    if (contain(str, '^'))    
+        eval_powers(&str);
     while (my_strlen(str) > 1 &&
     contain_any_of(str + 1, ops_without_dot)) {
         cleanex(&str, base, ops);
