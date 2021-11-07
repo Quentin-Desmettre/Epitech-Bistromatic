@@ -11,6 +11,7 @@
 
 int len_to_prev_paren(char *str, int start)
 {
+    int stack = 0;
     int i = start - 1;
     int len = 0;
 
@@ -23,7 +24,11 @@ int len_to_prev_paren(char *str, int start)
     while (i >= 0) {
         if ((contain(BASE, str[i]) || contain(OPS, str[i])))
             len++;
+        if (str[i] == OPS[1])
+            stack--;
         if (str[i] == OPS[0])
+            stack++;
+        if (str[i] == OPS[0] && stack == 0)
             break;
         i--;
     }
@@ -32,6 +37,7 @@ int len_to_prev_paren(char *str, int start)
 
 int len_to_next_paren(char *str, int start)
 {
+    int stack = 0;
     int i = start + 1;
     int len = 0;
 
@@ -40,7 +46,11 @@ int len_to_next_paren(char *str, int start)
     while (str[i]) {
         if ((contain(BASE, str[i]) || contain(OPS, str[i])))
             len++;
+        if (str[i] == '(')
+            stack++;
         if (str[i] == ')')
+            stack--;
+        if (str[i] == ')' && stack == 0)
             break;
         i++;
     }

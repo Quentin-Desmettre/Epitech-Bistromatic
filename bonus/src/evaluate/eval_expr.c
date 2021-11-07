@@ -95,6 +95,14 @@ void eval_powers(char **str)
             re_alloc(&right, replace(right, 0, 1, ""), 1);
             re_alloc(&right, replace(right, my_strlen(right) - 1, 1, ""), 1);
         }
+        // evaluation
+        // si il y a ^ dans right/gauche, eval_powers:
+        if (contain(left, '^'))
+            eval_powers(&left);
+        if (contain(right, '^'))
+            eval_powers(&right);
+        re_alloc(&left, evaluate(my_strdup(left), BASE, OPS), 1);
+        re_alloc(&right, evaluate(my_strdup(right), BASE, OPS), 1);
         tmp = infin_pow(left, right, BASE, OPS);
         re_alloc(str, replace(*str, start, nb_rm, tmp), 1);
         free(left);

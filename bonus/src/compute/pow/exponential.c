@@ -18,7 +18,7 @@ char *my_pow(char *nb, char *pwr, char *base, char *ops)
     pwr = my_strdup(pwr);
     if (neg)
         re_alloc(&pwr, my_strdup(pwr + 1), 1);
-    while (pwr[0] != 0 && pwr[0] != '0') {
+    while (pwr[0] != 0 && pwr[0] != '0' && my_strcmp(pwr, "-0") != 0) {
         if (result[0] == base[0] && my_strlen(result) == 1)
             break;
         re_alloc(&result, infin_mul(result, nb, base, ops), 1);
@@ -77,7 +77,12 @@ char *exp_decimal(char *decimal)
 "0.0000000000000000000000000000000000000000000031522944049459032722977673942776328127393929597393977256415952349914898366123765499384",
 "0.0000000000000000000000000000000000000000000000808280616652795710845581383148110977625485374292153262985024419228587137592917064086", 0};
     char *result = my_strdup("0");
-    char *minus_half = infin_sub(decimal, "0.5", BASE, OPS);
+    int neg = 0;
+    if (decimal[0] == '-') {
+        neg = 1;
+        decimal++;
+    }
+    char *minus_half = infin_sub(decimal, "0.5", BASE, OPS);    
     if (minus_half[0] == '-' && minus_half[1] == '.') {
         re_alloc(&minus_half, replace(minus_half, 1, 0, "0"), 1);
     }
@@ -94,6 +99,8 @@ char *exp_decimal(char *decimal)
     }
     free(tmp_mul);
     free(tmp_pow);
+    if (neg)
+        re_alloc(&result, infin_div(my_strdup("1"), result, BASE, OPS), 1);
     return result;
 }
 
@@ -109,7 +116,9 @@ char *my_exp(char *x, char *base, char *ops)
         whole_part[index_dot] = 0;
         free(decimal_part);
         decimal_part = my_strdup(x + index_dot);
-        insert_at_beg(&decimal_part, '0', 1, 1);       
+        insert_at_beg(&decimal_part, '0', 1, 1);
+        if (x[0] == '-')
+            insert_at_beg(&decimal_part, '-', 1, 1);
     }
     e_whole = my_pow(EXP, whole_part, BASE, OPS);
     e_decimal = exp_decimal(decimal_part);
@@ -121,9 +130,12 @@ char *new_ln(char *x);
 
 char *infin_pow(char *a, char *b, char *base, char *ops)
 {
-    if (nb_decimals(b, OPS) == 0) {
+    if (a[0] == '-' && nb_decimals(b, OPS) != 0) {
+        my_putstr("ERROR\n");
+        exit(84);
+    } 
+    if (nb_decimals(b, OPS) == 0)
         return my_pow(a, b, BASE, OPS);
-    }
     char *ln_a =  my_ln(a);
     char *b_ln_a = infin_mul(b, ln_a, BASE, OPS);
     char *result = my_exp(b_ln_a, BASE, OPS);
