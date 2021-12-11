@@ -8,7 +8,7 @@
 SRC = exponential.c \
 	log.c
 
-FLAGS = -c -g -Wall -Wextra
+FLAGS = -c 
 
 INCLUDE = ../../../include/
 

@@ -9,10 +9,22 @@ NAME = calc
 
 LIBS = -L ./lib/my/ -lmy
 
-all:
+official:
 	make -C ./lib/my/ && make -C ./lib/my/ clean
 	make -C ./src/
 	gcc -o $(NAME) *.o $(LIBS)
+
+easy:
+	make -s -C bonus/
+	mv bonus/calc ./
+
+graphical:
+	rm -rf graphical
+	mkdir -p graphical/
+	cd graphical ; qmake ../bonus/Bistromatic_graphic/Bistromatic.pro ; make
+	mv graphical/Bistromatic ./graphic
+	rm -rf graphical
+	make -s fclean -C bonus/
 
 tests_run: fclean
 	make -C ./lib/my/ && make -C ./lib/my/ clean
@@ -34,5 +46,7 @@ fclean: clean
 	rm -f unit_tests
 	rm -f *.html
 	rm -f *.css
+	rm -f output
+	rm -f graphic
 
 re: fclean all

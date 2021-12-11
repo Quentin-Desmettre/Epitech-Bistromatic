@@ -8,16 +8,6 @@
 #include "bistromatic.h"
 #include <stdlib.h>
 
-int count_occurences(char const c, char const *str)
-{
-    int oc = 0;
-
-    for (int i = 0; str[i]; i++) {
-        (str[i] == c) ? (oc++) : (0);
-    }
-    return oc;
-}
-
 int check_redundance(char const *str)
 {
     for (int i = 0; str[i]; i++) {

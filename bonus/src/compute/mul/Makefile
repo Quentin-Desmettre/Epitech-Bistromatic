@@ -9,7 +9,7 @@ SRC = infin_mul.c
 
 OBJ = $(SRC:.c=.o)
 
-FLAGS = -c -g -Wall -Wextra
+FLAGS = -c 
 
 INCLUDE = ../../../include/
 

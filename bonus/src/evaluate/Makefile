@@ -13,7 +13,7 @@ SRC = eval_expr.c \
 
 OBJ = $(SRC:.c=.o)
 
-FLAGS = -g -Wall -Wextra
+FLAGS = \
 
 INCLUDE = ../../include/
 

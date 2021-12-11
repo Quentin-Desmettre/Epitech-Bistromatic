@@ -36,3 +36,13 @@ int contain_only(char const *str, char const *check)
     }
     return 1;
 }
+
+int count_occurences(char const c, char const *str)
+{
+    int oc = 0;
+
+    for (int i = 0; str[i]; i++) {
+        (str[i] == c) ? (oc++) : (0);
+    }
+    return oc;
+}

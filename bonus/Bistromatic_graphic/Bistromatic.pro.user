@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 5.0.3, 2021-11-06T22:03:21. -->
+<!-- Written by QtCreator 5.0.3, 2021-12-11T22:03:49. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -235,8 +235,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/qdes/Bistromatic/Bistromatic.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/qdes/Bistromatic/Bistromatic.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Bistromatic2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/qdes/Epitech/Tek1/C_Pool/Projects/B-CPE-101-LIL-1-1-bistromatic-quentin.desmettre/bonus/Bistromatic_graphic/Bistromatic.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/qdes/Epitech/Tek1/C_Pool/Projects/B-CPE-101-LIL-1-1-bistromatic-quentin.desmettre/bonus/Bistromatic_graphic/Bistromatic.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>

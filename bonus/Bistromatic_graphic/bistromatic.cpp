@@ -42,10 +42,11 @@ bistromatic::bistromatic(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("Bistromatic");
     ui->results->setMaximumHeight(height() / 3);
-    path = "/home/qdes/Epitech/Tek1/C_Pool/Projects/B-CPE-101-LIL-1-1-bistromatic-quentin.desmettre/bonus/calc";
+    path = "./calc";
     adapt_graphics();
     m_cursor = ui->results->textCursor();
-
+    if (system("make -s easy"))
+        exit(84);
 }
 
 void bistromatic::adapt_graphics()
@@ -129,8 +130,8 @@ void bistromatic::compute(QString expr){
         return;
     }
     QString final_expr = " \'" + expr + "\' ";
-    system((path + final_expr + " > /home/qdes/Bistromatic_graphic/output").toStdString().c_str());
-    QFile output("/home/qdes/Bistromatic_graphic/output");
+    system((path + final_expr + " > output").toStdString().c_str());
+    QFile output("output");
     if (output.open(QIODevice::ReadOnly | QIODevice::Text)){
         expr = ui->results->toPlainText();
         expr += "\n" + output.readAll();
@@ -169,31 +170,31 @@ void bistromatic::toto()
 {
 
     QLabel *widget = new QLabel;
-    QFile *totos = new QFile("toto_1");
+    QFile *totos = new QFile("bonus/Bistromatic_graphic/toto_1");
     if (!totos->open(QIODevice::ReadOnly | QIODevice::Text))
         return;
     QString toto_1 = totos->readAll();
     totos->close();
     delete totos;
-    totos = new QFile("toto_2");
+    totos = new QFile("bonus/Bistromatic_graphic/toto_2");
     if (!totos->open(QIODevice::ReadOnly | QIODevice::Text))
         return;
     QString toto_2 = totos->readAll();
     totos->close();
     delete totos;
-    totos = new QFile("toto_3");
+    totos = new QFile("bonus/Bistromatic_graphic/toto_3");
     if (!totos->open(QIODevice::ReadOnly | QIODevice::Text))
         return;
     QString toto_3 = totos->readAll();
     totos->close();
     delete totos;
-    totos = new QFile("toto_4");
+    totos = new QFile("bonus/Bistromatic_graphic/toto_4");
     if (!totos->open(QIODevice::ReadOnly | QIODevice::Text))
         return;
     QString toto_4 = totos->readAll();
     totos->close();
     delete totos;
-    totos = new QFile("toto_5");
+    totos = new QFile("bonus/Bistromatic_graphic/toto_5");
     if (!totos->open(QIODevice::ReadOnly | QIODevice::Text))
         return;
     QString toto_5 = totos->readAll();
